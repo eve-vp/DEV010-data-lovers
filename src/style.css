@@ -12,8 +12,8 @@ header {
 }
 
 header img {
-    max-height: 30%;
-    max-width: 30%;
+    max-height: 40%;
+    width: auto; /* Esto hará que el ancho se ajuste proporcionalmente a la altura */
     object-fit: contain;
 }
 
