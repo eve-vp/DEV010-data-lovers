@@ -22,12 +22,30 @@
     <nav>
         <!-- Aquí podemos agregar los elementos de búsqueda y filtros -->
         <form>
-            <input type="text" placeholder="Search films"><br>
+            <input type="text" placeholder="Search films">
             <button type="submit">Search</button><br>
-            <input type="text" placeholder="Sort by year"></input><br>
-            <button type="submit">Sort by</button><br>
         </form>
+
+        <div class="filters">
+          <label for="sort">Sort by:</label>
+          <select id="sort">
+              <option value="alphabetically-AZ">Alphabetically, A-Z</option>
+              <option value="alphabetically-ZA">Alphabetically, Z-A</option>
+              <option value="date-new-old">Date, new to old</option>
+              <option value="date-old-new">Date, old to new</option>
+          </select>
+      </div>
     </nav>
+
+    <main class="cards">
+      <ul class="cards">
+        <li><a class="card1" href="#" title="film-title"></a>Film title 1</li>
+        <li><a class="card2" href="#" title="film-title"></a>Film title 2</li>
+        <li><a class="card3" href="#" title="film-title"></a>Film title 3</li>
+        <li><a class="card4" href="#" title="film-title"></a>Film title 4</li>
+      </ul>
+    </main>
+    
 
   </body>
 
