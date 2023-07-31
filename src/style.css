@@ -20,7 +20,7 @@ header {
 }
 
 .logo img {
-  max-height: 70%;
+  max-height: 100px;
   width: auto;
   object-fit: contain;
 }
