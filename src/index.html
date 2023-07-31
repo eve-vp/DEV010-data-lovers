@@ -1,12 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" style="--header-height: 0px">
   <head>
-    <meta charset="utf-8">
-    <title>Data Lovers</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="" />
+    <title>Studio Ghibli</title>
     <link rel="stylesheet" href="style.css" />
+    <!--<style>.nav-title-mobile {display: none;}.list-menu--disclosure{display: none;position: absolute;min-width: 100%;width: 22rem;background-color: var(--bg-white);box-shadow: 0 1px 4px 0 rgb(0 0 0 / 15%);padding: 5px 0 5px 20px;opacity: 0;visibility: visible;pointer-events: none;transition:</style>
+    -----Este estilo oculta el título de navegación en la versión móvil del sitio web.-->
   </head>
+
   <body>
     <div id="root"></div>
     <script src="main.js" type="module"></script>
+
+    <header>
+      <img
+        name="logo"
+        src="https://cdn.shopify.com/s/files/1/0618/8715/2293/files/Studio_Ghibli_logo_c282b0e9-3541-4c76-8b79-84904436459d.png?v=1676054213"
+        alt="Logo Studio Ghibli"
+      />
+    </header>
+    <br />
+
+    <!-- Barra de navegación con búsqueda y filtros -->
+    <nav>
+      <!-- Aquí podemos agregar los elementos de búsqueda y filtros -->
+      <form>
+        <input type="text" placeholder="Search films" />
+        <button type="submit">Search</button><br />
+      </form>
+
+      <div class="filters">
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+          <option value="alphabetically-AZ">Alphabetically, A-Z</option>
+          <option value="alphabetically-ZA">Alphabetically, Z-A</option>
+          <option value="date-new-old">Date, new to old</option>
+          <option value="date-old-new">Date, old to new</option>
+        </select>
+      </div>
+    </nav>
+
+    <!-- <main class="cards">
+      <ul class="cards">
+        <li><a class="card1" href="#" title="film-title"></a>Film title 1</li>
+        <li><a class="card2" href="#" title="film-title"></a>Film title 2</li>
+        <li><a class="card3" href="#" title="film-title"></a>Film title 3</li>
+        <li><a class="card4" href="#" title="film-title"></a>Film title 4</li>
+      </ul>
+    </main> -->
+
+    <main>
+      <div class="movie-grid">
+        <figure>
+          <img
+            src="https://ghiblicollection.com/cdn/shop/products/CITS_Cover_SB_72dpi.png?v=1675274073"
+            alt="Castle in the Sky"
+          />
+          <figcaption>Castle in the Sky</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/bk3IGSc9KtSeJzypNWZySZbiU9m.jpg"
+            alt="Grave of the Fireflies"
+          />
+          <figcaption>Grave of the Fireflies</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://ghiblicollection.com/cdn/shop/products/Totoro_Cover_SB_72dpi.png?v=1675792119.jpg"
+            alt="My Neighbor Totoro"
+          />
+          <figcaption>My Neighbor Totoro</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://ghiblicollection.com/cdn/shop/products/Kikis_Cover_SB_72dpi.png?v=1675275681"
+            alt="Kiki's Delivery Service"
+          />
+          <figcaption>Kiki's Delivery Service</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/bk3IGSc9KtSeJzypNWZySZbiU9m.jpg"
+            alt="Grave of the Fireflies"
+          />
+          <figcaption>Grave of the Fireflies</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/bk3IGSc9KtSeJzypNWZySZbiU9m.jpg"
+            alt="Grave of the Fireflies"
+          />
+          <figcaption>Grave of the Fireflies</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/bk3IGSc9KtSeJzypNWZySZbiU9m.jpg"
+            alt="Grave of the Fireflies"
+          />
+          <figcaption>Grave of the Fireflies</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/bk3IGSc9KtSeJzypNWZySZbiU9m.jpg"
+            alt="Grave of the Fireflies"
+          />
+          <figcaption>Grave of the Fireflies</figcaption>
+        </figure>
+      </div>
+    </main>
   </body>
 </html>
