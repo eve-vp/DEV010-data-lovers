@@ -80,6 +80,14 @@ nav .filters {
   } */
 
 /* Estilos para la cuadrícula de películas */
+
+/* Estilos para el contenedor de la cuadrícula */
+.grid-container {
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 0 20px; /* Añadir un espaciado adicional en los lados para centrar */
+}
+
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
