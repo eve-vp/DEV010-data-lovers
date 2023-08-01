@@ -49,36 +49,6 @@ nav .filters {
   justify-content: center;
 }
 
-/* nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-direction: row;
-    padding: 20px;
-  } */
-
-/* .cards {
-    list-style: none;
-    display: inline-flex;
-    box-sizing: content-box;
-    width: 100vh;
-    height: fit-content;
-    margin: 20px;
-    padding: 20px;
-    justify-content: center;
-  }
-
-  .card1,
-  .card2,
-  .card3,
-  .card4 {
-    width: 25vh;
-    height: 100px;
-    margin: 20px;
-    padding: 20px;
-    align-items: center;
-  } */
-
 /* Estilos para la cuadrícula de películas */
 
 /* Estilos para el contenedor de la cuadrícula */
@@ -95,6 +65,7 @@ nav .filters {
   grid-gap: 20px; /* Espacio entre las columnas */
   max-width: 960px;
   margin: 20px auto;
+  justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
 }
 
 figure {
