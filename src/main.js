@@ -1,28 +1,40 @@
 import data from './data/ghibli/ghibli.js'
 
+function printdata(array) {
+  const container = document.querySelector('.movie-grid');
 
+  for (let i = 0; i < array.length; i++) {
+    const movie = array[i];
+    const figure = document.createElement("figure");
 
-// queremos que cuando el usuario escriba el nombre de la película y le traiga la imagen //
-const searchTitle = 'Castle in the Sky';
-// Utilizamos el método 'find()' para buscar la película por su título
-const foundFilm = data.films.find((film) => film.title === searchTitle);
-// Mostramos la película encontrada en la consola
-// console.log(foundFilm);
+    // Agregar la imagen y título de la película
+    const movieImage = document.createElement("img");
+    movieImage.src = movie.poster;
+    movieImage.alt = movie.title;
+    figure.appendChild(movieImage);
 
-function printdata(array){
-  const container = document.querySelector('.movie-grid')
-  for(let i = 0 ; i< array.length; i++){
-    // console.log(array[i]);
-    // Esto se vino del HTML -->
-    container.innerHTML += ` <figure>  
-        <img
-          src="${array[i].poster}"
-          alt="${array[i].title}"
-        />
-        <figcaption>${array[i].title}</figcaption>
-      </figure>` //template string
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = movie.title;
+    figure.appendChild(figcaption);
+
+    // Crear el botón "Open modal"
+    const openModalButton = document.createElement("button");
+    openModalButton.textContent = "More Info";
+    openModalButton.addEventListener("click", () => {
+      // Mostrar los detalles de la película en el modal
+      showmoviesdetails(movie, modalContainer);
+    });
+
+    // Agregar el botón al figure
+    figure.appendChild(openModalButton);
+
+    // Agregar el figure al contenedor de películas
+    container.appendChild(figure);
   }
 }
+
+// Obtener el contenedor del modal
+const modalContainer = document.querySelector(".modal-container");
+
+// Llamar a la función printdata() con los datos de películas
 printdata(data.films);
-
-
