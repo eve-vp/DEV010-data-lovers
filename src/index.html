@@ -19,8 +19,7 @@
 
   <body>
     <div id="root"></div>
-    <script src="main.js" type="module"></script>
-
+    
     <header>
       <div class="logo">
         <img
@@ -31,11 +30,11 @@
 
     <!-- Barra de navegación con búsqueda y filtros -->
     <nav>
-      <!-- Aquí podemos agregar los elementos de búsqueda y filtros -->
-      <form>
-        <input type="text" placeholder="Search films"/><br>
-        <button id="buttonSearch" onclick="">Search</button><br />
-      </form>
+      <!-- Campo de entrada y botón de búsqueda -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search">
+    <button id="searchButton">Search</button>
+  </div>
 
       <div class="filters">
         <label for="sort">Sort by:</label>
@@ -62,28 +61,20 @@
       </div>
     </main>
 
-<!-- Modal para mostrar los detalles de la película -->
-<div class="modal-container" id="modalContainer">
-  <div class="modal">
-    <div class="modal-close" id="modalClose">X</div>
-    <h2 id="modalTitle"></h2>
-    <img id="modalImage" src="" alt="Film Poster" />
-    <p id="modalDescription"></p>
-  </div>
-</div>
-<!--Termina el codigo del modal-->
 
-    <script src="data.js"></script>
-    <script src="main.js" type="module"></script>
 
-  </body>
+     </body>
 
 <footer>
   <p><center>Developer Rocío Lorca & Evelyn VPírez</center></p>
   <p><center>Copyright 2023© #20</center></p>
 </footer>
 
-  </html> 
+<script src="data.js"></script>
+<script src="main.js" type="module"></script>
+
+
+</html> 
 
 
    

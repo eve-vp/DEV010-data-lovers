@@ -1,54 +1,51 @@
-import data from './data/ghibli/ghibli.js'; // Importar los datos de las películas
+import data from './data/ghibli/ghibli.js'
 
-function createMovieElement(movie) {
-  const figure = document.createElement("figure");
+// const titles = films.map((title) => title.title);
+// console.log(titles);
+{
 
-  const movieImage = document.createElement("img");
-  movieImage.src = movie.poster;
-  movieImage.alt = movie.title;
-  figure.appendChild(movieImage);
-
-  const figcaption = document.createElement("figcaption");
-  figcaption.textContent = movie.title;
-  figure.appendChild(figcaption);
-
-  const openModalButton = document.createElement("button");
-  openModalButton.textContent = "More info";
-  openModalButton.classList.add("open-modal-button"); // Agregar una clase para identificar los botones de abrir modal
-  figure.appendChild(openModalButton);
-
-  // Agregar el evento click para abrir el modal
-  openModalButton.addEventListener("click", () => {
-    // Obtener el contenedor del modal
-    const modalContainer = document.querySelector(".modal-container");
-
-    // Mostrar los detalles de la película en el modal
-    showmoviesdetails(movie, modalContainer);
-  });
-
-  return figure;
-}
-
-function printdata(array) {
-  const container = document.querySelector('.movie-grid');
-
-  for (let i = 0; i < array.length; i++) {
-    const movie = array[i];
-    const movieElement = createMovieElement(movie);
-    container.appendChild(movieElement);
-    // const figure = document.createElement("figure");
-
-    // // Agregar la imagen y título de la película
-    // const movieImage = document.createElement("img");
-    // movieImage.src = movie.poster;
-    // movieImage.alt = movie.title;
-    // figure.appendChild(movieImage);
-  
-    // const figcaption = document.createElement("figcaption");
-    // figcaption.textContent = movie.title;
-    // figure.appendChild(figcaption);
-
+function printdata(array){
+  const container = document.querySelector('.movie-grid')
+  for(let i = 0 ; i< array.length; i++){
+    // console.log(array[i]);
+    // Esto se vino del HTML -->
+    container.innerHTML += ` <figure>  
+        <img
+          src="${array[i].poster}"
+          alt="${array[i].title}"
+        />
+        <figcaption>${array[i].title}</figcaption>
+      </figure>` //template string
   }
 }
-// Llamar a la función printdata() con los datos de películas
+// Llamar a la función printdata()
+printdata(data.films);
+
+}
+
+// Obtén el elemento del campo de entrada y el botón de búsqueda
+const searchInput = document.querySelector('#searchInput');
+const searchButton = document.querySelector('#searchButton');
+
+// Obtén el contenedor de las películas
+const container = document.querySelector('.movie-grid');
+
+// Función para mostrar las películas que coinciden con el término de búsqueda
+function showMatchingFilms(searchTerm) {
+  container.innerHTML = ''; // Limpiar el contenedor antes de mostrar las películas
+
+  // Filtrar las películas que coinciden con el término de búsqueda
+  const matchingFilms = data.films.filter((film) =>
+    film.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+}
+
+// Agrega un evento click al botón de búsqueda
+searchButton.addEventListener('click', () => {
+  const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
+  showMatchingFilms(searchTerm);
+});
+
+// Llama a la función inicialmente para mostrar todas las películas
 printdata(data.films);
