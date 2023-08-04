@@ -18,6 +18,8 @@
   </head>
 
   <body>
+    <div id="root"></div>
+    
     <header>
       <div class="logo">
         <img
@@ -28,11 +30,11 @@
 
     <!-- Barra de navegación con búsqueda y filtros -->
     <nav>
-      <!-- Aquí podemos agregar los elementos de búsqueda y filtros -->
-      <form>
-        <input type="text" class="search" onkeyup="search()" placeholder="Search films"/><br>
-        <button id="buttonSearch" onclick="">Search</button><br />
-      </form>
+      <!-- Campo de entrada y botón de búsqueda -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search">
+    <button id="searchButton">Search</button>
+  </div>
 
       <div class="filters">
         <label for="sort">Sort by:</label>
@@ -59,24 +61,18 @@
       </div>
     </main>
 
-    <section id="titles">
-      <h2>Titles</h2>
-      <div class = "container-card"></div>
-    </section>
 
-    <!--Empieza el codigo del modal-->
-    <div class="modal-title"></div>
-    <!--Termina el codigo del modal-->
 
-    <footer>
-      <p><center>Developer Rocío Lorca & Evelyn VPírez</center></p>
-      <p><center>Copyright 2023© #20</center></p>
-    </footer>
+     </body>
 
-    <script src="data.js"></script>
-    <script src="main.js" type="module"></script>
+<footer>
+  <p><center>Developer Rocío Lorca & Evelyn VPírez</center></p>
+  <p><center>Copyright 2023© #20</center></p>
+</footer>
 
-  </body>
+<script src="data.js"></script>
+<script src="main.js" type="module"></script>
+
 
 </html> 
 

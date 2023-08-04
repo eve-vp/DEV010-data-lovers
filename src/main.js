@@ -1,11 +1,8 @@
-// INCLUIDO EN FORMATO //
-//import { example } from './data.js';
-// import data from './data/lol/lol.js';
-//import data from './data/pokemon/pokemon.js';
-// import data from './data/rickandmorty/rickandmorty.js';
-
 import data from './data/ghibli/ghibli.js'
-// queremos que cuando el usuario escriba el nombre de la película y le traiga la imagen //
+
+// const titles = films.map((title) => title.title);
+// console.log(titles);
+{
 
 function printdata(array){
   const container = document.querySelector('.movie-grid')
@@ -21,20 +18,48 @@ function printdata(array){
       </figure>` //template string
   }
 }
-printdata(data.films)
 
+// Llamar a la función printdata()
+printdata(data.films);
 
+}
+// Obtén el elemento del campo de entrada y el botón de búsqueda
+const searchInput = document.querySelector('#searchInput');
+const searchButton = document.querySelector('#searchButton');
 
+// Obtén el contenedor de las películas
+const container = document.querySelector('.movie-grid');
 
+// Función para mostrar las películas que coinciden con el término de búsqueda
+function showMatchingFilms(searchTerm) {
+  container.innerHTML = ''; // Limpiar el contenedor antes de mostrar las películas
 
-/// BUSCADOOOOOOOOORRRRRRR 
-const searchTitle = 'Castle in the Sky';
-// Utilizamos el método 'find()' para buscar la película por su título
-const foundFilm = data.films.find((film) => film.title === searchTitle);
-// Mostramos la película encontrada en la consola
-// console.log(foundFilm);
+  // Filtrar las películas que coinciden con el término de búsqueda
+  const matchingFilms = data.films.filter((film) =>
+    film.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-let films = data.films;
+  // Mostrar las películas que coinciden con el término de búsqueda
+  for (let i = 0; i < matchingFilms.length; i++) {
+    const movie = matchingFilms[i];
+    container.innerHTML += ` <figure>  
+      <img
+        src="${movie.poster}"
+        alt="${movie.title}"
+      />
+      <figcaption>${movie.title}</figcaption>
+    </figure>`;
+  }
+}
+
+// Agrega un evento click al botón de búsqueda
+searchButton.addEventListener('click', () => {
+  const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
+  showMatchingFilms(searchTerm);
+});
+
+// Llama a la función inicialmente para mostrar todas las películas
+printdata(data.films);
 
 // METODO MAP
 // const titles = films.map((title) => title.title);
@@ -72,8 +97,3 @@ let films = data.films;
 
 //   renderFilms(results, containerTitles, modalTitle);
 // });
-
-
-
-
-
