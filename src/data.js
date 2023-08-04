@@ -1,6 +1,4 @@
-export function showmoviesdetails(films, modalContainer) {
-  // ... código de la función showmoviesdetails ...
-}
+
 // ... Tu array de películas 'films' ...
 
   function showmoviesdetails(films, modalContainer) {
@@ -26,4 +24,6 @@ export function showmoviesdetails(films, modalContainer) {
   modalContainer.appendChild(modalContent);
 }
 
-
+export function showmoviesdetails(films, modalContainer) {
+  // ... código de la función showmoviesdetails ...
+}
