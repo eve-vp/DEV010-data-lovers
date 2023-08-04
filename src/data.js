@@ -1,29 +1,12 @@
-export function showmoviesdetails(films, modalContainer) {
-  // ... código de la función showmoviesdetails ...
-}
-// ... Tu array de películas 'films' ...
+// El corazón de este proyecto es la manipulación de datos a través de arreglos y objetos.
+// Recomendamos que este archivo contenga toda la funcionalidad que corresponda a obtener, procesar y manipular datos (tus funciones)
 
-  function showmoviesdetails(films, modalContainer) {
-  const modalContent = document.createElement("div");
-  modalContent.classList.add("modal-content");
+// estas funciones son de ejemplo
 
-  const modalTitle = document.createElement("h2");
-  modalTitle.textContent = films.title;
-  modalContent.appendChild(modalTitle);
+// export const example = () => {
+//   return 'example';
+// };
 
-  const modalImage = document.createElement("img");
-  modalImage.src = films.poster;
-  modalImage.alt = films.title;
-  modalContent.appendChild(modalImage);
-
-  const modalDescription = document.createElement("p");
-  modalDescription.textContent = films.description;
-  modalContent.appendChild(modalDescription);
-
-  // Agregar más detalles que deseas mostrar en el modal
-
-  modalContainer.innerHTML = ""; // Limpiar el contenido actual del modal
-  modalContainer.appendChild(modalContent);
-}
-
-
+// export const anotherExample = () => {
+//   return 'OMG';
+// };
