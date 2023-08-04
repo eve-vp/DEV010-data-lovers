@@ -1,13 +1,29 @@
-// El corazón de este proyecto es la manipulación de datos a través de arreglos y objetos.
-// Recomendamos que este archivo contenga toda la funcionalidad que corresponda a obtener, procesar y manipular datos (tus funciones)
+export function showmoviesdetails(films, modalContainer) {
+  // ... código de la función showmoviesdetails ...
+}
+// ... Tu array de películas 'films' ...
 
-// estas funciones son de ejemplo
+  function showmoviesdetails(films, modalContainer) {
+  const modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content");
 
-// export const example = () => {
-//   return 'example';
-// };
+  const modalTitle = document.createElement("h2");
+  modalTitle.textContent = films.title;
+  modalContent.appendChild(modalTitle);
 
-// export const anotherExample = () => {
-//   return 'OMG';
-// };
+  const modalImage = document.createElement("img");
+  modalImage.src = films.poster;
+  modalImage.alt = films.title;
+  modalContent.appendChild(modalImage);
+
+  const modalDescription = document.createElement("p");
+  modalDescription.textContent = films.description;
+  modalContent.appendChild(modalDescription);
+
+  // Agregar más detalles que deseas mostrar en el modal
+
+  modalContainer.innerHTML = ""; // Limpiar el contenido actual del modal
+  modalContainer.appendChild(modalContent);
+}
+
 
