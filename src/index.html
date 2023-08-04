@@ -33,7 +33,7 @@
     <nav>
       <!-- Aquí podemos agregar los elementos de búsqueda y filtros -->
       <form>
-        <input type="text" placeholder="Search films"/><br>
+        <input type="text" class="search" onkeyup="search()" placeholder="Search films"/><br>
         <button id="buttonSearch" onclick="">Search</button><br />
       </form>
 
@@ -61,29 +61,23 @@
         </div>
       </div>
     </main>
-<!--Empieza el codigo del modal-->
+
+    <section id="titles">
+      <h2>Titles</h2>
+      <div class = "container-card"></div>
+    </section>
+
+    <!--Empieza el codigo del modal-->
     <div class="modal-title"></div>
-<!--Termina el codigo del modal-->
+    <!--Termina el codigo del modal-->
 
     <script src="data.js"></script>
     <script src="main.js" type="module"></script>
 
+    <footer>
+      <p class="paragrapf">Delovoper  Rocío Lorca & Evelyn VPírez</p>
+    </footer>
+
   </body>
 
-<footer>
-  <p class="paragrapf">Delovoper  Rocío Lorca & Evelyn VPírez</p>
-</footer>
-
-  </html> 
-
-
-    <!-- <script src="data.js"></script>
-    <script src="main.js" type="module"></script>
-  </body>
-
-  <footer>
-    <p class="paragrapf">Delovoper  Rocío Lorca & Evelyn VPírez</p>
-  </footer>
-
-
-  </html> -->
+</html> 
