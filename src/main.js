@@ -60,3 +60,40 @@ searchButton.addEventListener('click', () => {
 
 // Llama a la función inicialmente para mostrar todas las películas
 printdata(data.films);
+
+// METODO MAP
+// const titles = films.map((title) => title.title);
+// console.log(titles);
+
+// const directors = films.map((director) => director.director);
+// console.log(directors);
+
+// const releaseDates = films.map((releaseDate) => releaseDate.release_date);
+// console.log(releaseDates); 
+
+//METODO FLAT //Muestra todos los niveles, pero entrega TODA la información
+// const characters = films.flat(Infinity);
+// console.log(characters);
+
+
+
+
+
+//BUSCADOR EN TIEMPO REAL // NO FUNCIONA
+
+// const searcher = document.querySelector('input[placeholder="Search films"]');
+
+// const containerTitles = document.querySelector(".contenedor-card");
+// renderFilms(films, containerTitles, modalTitle);
+
+// searcher.addEventListener("keyup", (e) => {
+// //filtramos convirtiendo en minúsculas()
+// //usamos includes para comparar el valor 
+//   const results = films.filter(
+//     (film) =>
+//       film.title.toLocaleLowerCase().includes(e.target.value) ||
+//       film.director.toLocaleLowerCase().includes(e.target.value)
+//   );
+
+//   renderFilms(results, containerTitles, modalTitle);
+// });
