@@ -22,7 +22,6 @@ function printdata(array){
 printdata(data.films);
 
 }
-
 // Obtén el elemento del campo de entrada y el botón de búsqueda
 const searchInput = document.querySelector('#searchInput');
 const searchButton = document.querySelector('#searchButton');
@@ -39,6 +38,17 @@ function showMatchingFilms(searchTerm) {
     film.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Mostrar las películas que coinciden con el término de búsqueda
+  for (let i = 0; i < matchingFilms.length; i++) {
+    const movie = matchingFilms[i];
+    container.innerHTML += ` <figure>  
+      <img
+        src="${movie.poster}"
+        alt="${movie.title}"
+      />
+      <figcaption>${movie.title}</figcaption>
+    </figure>`;
+  }
 }
 
 // Agrega un evento click al botón de búsqueda
