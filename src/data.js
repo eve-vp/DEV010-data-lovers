@@ -1,6 +1,9 @@
-
+export function showmoviesdetails(films, modalContainer) {
+  // ... código de la función showmoviesdetails ...
+}
 // ... Tu array de películas 'films' ...
-function showmoviesdetails(films, modalContainer) {
+
+  function showmoviesdetails(films, modalContainer) {
   const modalContent = document.createElement("div");
   modalContent.classList.add("modal-content");
 
@@ -16,6 +19,8 @@ function showmoviesdetails(films, modalContainer) {
   const modalDescription = document.createElement("p");
   modalDescription.textContent = films.description;
   modalContent.appendChild(modalDescription);
+
+  // Agregar más detalles que deseas mostrar en el modal
 
   modalContainer.innerHTML = ""; // Limpiar el contenido actual del modal
   modalContainer.appendChild(modalContent);
