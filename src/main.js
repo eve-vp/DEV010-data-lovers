@@ -13,7 +13,7 @@ function createMovieElement(movie) {
   figure.appendChild(figcaption);
 
   const openModalButton = document.createElement("button");
-  openModalButton.textContent = "Open modal";
+  openModalButton.textContent = "More info";
   openModalButton.classList.add("open-modal-button"); // Agregar una clase para identificar los botones de abrir modal
   figure.appendChild(openModalButton);
 
