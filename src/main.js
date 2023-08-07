@@ -18,10 +18,13 @@ function printdata(array){
       </figure>` //template string
   }
 }
+
 // Llamar a la función printdata()
 printdata(data.films);
 
 }
+
+
 // Obtén el elemento del campo de entrada y el botón de búsqueda
 const searchInput = document.querySelector('#searchInput');
 const searchButton = document.querySelector('#searchButton');
@@ -47,15 +50,29 @@ function showMatchingFilms(searchTerm) {
         alt="${movie.title}"
       />
       <figcaption>${movie.title}</figcaption>
+      <p>"${movie.director}"</p>
+      <p>"${movie.release_date}"</p>
+      <p>"${movie.description}"</p>
+      <p>"${movie.director}"</p>
     </figure>`;
   }
 }
 
-// Agrega un evento click al botón de búsqueda
-searchButton.addEventListener('click', () => {
+// Llama a la función inicialmente para mostrar todas las películas
+printdata(data.films);
+
+//Agrega un evento keyup al botón de búsqueda//FUNCIONA :)
+searchInput.addEventListener('keyup', () => {
   const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
   showMatchingFilms(searchTerm);
 });
 
-// Llama a la función inicialmente para mostrar todas las películas
-printdata(data.films);
+//Queremos que se limpie el buscador y vuelva a aparecer la data de películas // VA A FUNCIONAR :)
+searchButton.addEventListener('click', () => {
+  searchInput.value = "";
+  //start();
+})
+
+
+
+
