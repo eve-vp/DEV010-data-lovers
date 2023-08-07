@@ -18,6 +18,7 @@
   </head>
 
   <body>
+    <!-- nodo “raíz” porque todo lo que esté dentro de él será manejado por React DOM -->
     <div id="root"></div>
     
     <header>
@@ -26,15 +27,15 @@
           src="https://cdn.shopify.com/s/files/1/0618/8715/2293/files/Studio_Ghibli_logo_c282b0e9-3541-4c76-8b79-84904436459d.png?v=1676054213"
           alt="Logo Studio Ghibli"/>
       </div>
-    </header><br />
+    </header>
 
     <!-- Barra de navegación con búsqueda y filtros -->
     <nav>
       <!-- Campo de entrada y botón de búsqueda -->
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search">
-    <button id="searchButton">Search</button>
-  </div>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search">
+        <button id="refreshButton">Refresh</button>
+      </div>
 
       <div class="filters">
         <label for="sort">Sort by:</label>
@@ -61,18 +62,15 @@
       </div>
     </main>
 
+      <footer>
+        <p><center>Developer Rocío Lorca & Evelyn VPírez</center></p>
+        <p><center>Copyright 2023© #20</center></p>
+      </footer>
 
+      <script src="data.js"></script>
+      <script src="main.js" type="module"></script>
 
-     </body>
-
-<footer>
-  <p><center>Developer Rocío Lorca & Evelyn VPírez</center></p>
-  <p><center>Copyright 2023© #20</center></p>
-</footer>
-
-<script src="data.js"></script>
-<script src="main.js" type="module"></script>
-
+  </body>
 
 </html> 
 
