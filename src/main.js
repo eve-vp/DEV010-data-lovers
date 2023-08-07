@@ -23,6 +23,8 @@ function printdata(array){
 printdata(data.films);
 
 }
+
+
 // Obtén el elemento del campo de entrada y el botón de búsqueda
 const searchInput = document.querySelector('#searchInput');
 const searchButton = document.querySelector('#searchButton');
@@ -48,52 +50,29 @@ function showMatchingFilms(searchTerm) {
         alt="${movie.title}"
       />
       <figcaption>${movie.title}</figcaption>
+      <p>"${movie.director}"</p>
+      <p>"${movie.release_date}"</p>
+      <p>"${movie.description}"</p>
+      <p>"${movie.director}"</p>
     </figure>`;
   }
 }
 
-// Agrega un evento click al botón de búsqueda
-searchButton.addEventListener('click', () => {
+// Llama a la función inicialmente para mostrar todas las películas
+printdata(data.films);
+
+//Agrega un evento keyup al botón de búsqueda//FUNCIONA :)
+searchInput.addEventListener('keyup', () => {
   const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
   showMatchingFilms(searchTerm);
 });
 
-// Llama a la función inicialmente para mostrar todas las películas
-printdata(data.films);
-
-// METODO MAP
-// const titles = films.map((title) => title.title);
-// console.log(titles);
-
-// const directors = films.map((director) => director.director);
-// console.log(directors);
-
-// const releaseDates = films.map((releaseDate) => releaseDate.release_date);
-// console.log(releaseDates); 
-
-//METODO FLAT //Muestra todos los niveles, pero entrega TODA la información
-// const characters = films.flat(Infinity);
-// console.log(characters);
+//Queremos que se limpie el buscador y vuelva a aparecer la data de películas // VA A FUNCIONAR :)
+searchButton.addEventListener('click', () => {
+  searchInput.value = "";
+  //start();
+})
 
 
 
 
-
-//BUSCADOR EN TIEMPO REAL // NO FUNCIONA
-
-// const searcher = document.querySelector('input[placeholder="Search films"]');
-
-// const containerTitles = document.querySelector(".contenedor-card");
-// renderFilms(films, containerTitles, modalTitle);
-
-// searcher.addEventListener("keyup", (e) => {
-// //filtramos convirtiendo en minúsculas()
-// //usamos includes para comparar el valor 
-//   const results = films.filter(
-//     (film) =>
-//       film.title.toLocaleLowerCase().includes(e.target.value) ||
-//       film.director.toLocaleLowerCase().includes(e.target.value)
-//   );
-
-//   renderFilms(results, containerTitles, modalTitle);
-// });
