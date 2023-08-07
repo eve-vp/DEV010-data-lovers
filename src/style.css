@@ -90,9 +90,10 @@ img {
 }
 
 figcaption {
-  background-color: #222;
+  background-color: #424242;
   border-radius: 5px 5px 5px 5px;
-  color: #fff;
+  color: #b18ca5;
   font-size: smaller;
   padding: 3px;
 }
+

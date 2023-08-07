@@ -1,16 +1,13 @@
 import data from './data/ghibli/ghibli.js'
 
+// const titles = films.map((title) => title.title);
+// console.log(titles);
 
-
-// queremos que cuando el usuario escriba el nombre de la película y le traiga la imagen //
-const searchTitle = 'Castle in the Sky';
-// Utilizamos el método 'find()' para buscar la película por su título
-const foundFilm = data.films.find((film) => film.title === searchTitle);
-// Mostramos la película encontrada en la consola
-// console.log(foundFilm);
 
 function printdata(array){
   const container = document.querySelector('.movie-grid')
+  container.innerHTML = '';
+  
   for(let i = 0 ; i< array.length; i++){
     // console.log(array[i]);
     // Esto se vino del HTML -->
@@ -23,6 +20,56 @@ function printdata(array){
       </figure>` //template string
   }
 }
+
+// Llamar a la función printdata()
 printdata(data.films);
+
+
+// Obtén el elemento del campo de entrada y el botón de búsqueda
+const searchInput = document.querySelector('#searchInput');
+const refreshButton = document.querySelector('#refreshButton');
+
+// Obtén el contenedor de las películas
+const container = document.querySelector('.movie-grid');
+
+// Función para mostrar las películas que coinciden con el término de búsqueda
+function showMatchingFilms(searchTerm) {
+  container.innerHTML = ''; // Limpiar el contenedor antes de mostrar las películas
+
+  // Filtrar las películas que coinciden con el término de búsqueda
+  const matchingFilms = data.films.filter((film) =>
+    film.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Mostrar las películas que coinciden con el término de búsqueda
+  for (let i = 0; i < matchingFilms.length; i++) {
+    const movie = matchingFilms[i];
+    container.innerHTML += ` <figure>  
+      <img
+        src="${movie.poster}"
+        alt="${movie.title}"/>
+        <figcaption>${movie.title}</figcaption>
+        <p>"${movie.director}"</p>
+        <p>"${movie.release_date}"</p>
+        <p>"${movie.description}"</p>
+    </figure>`;
+  }
+}
+
+// Llama a la función inicialmente para mostrar todas las películas
+printdata(data.films);
+
+//Agrega un evento keyup al botón de búsqueda//FUNCIONA :)
+searchInput.addEventListener('keyup', () => {
+  const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
+  showMatchingFilms(searchTerm);
+});
+
+//Queremos que se limpie el buscador y vuelva a aparecer la data de películas inicial // VA A FUNCIONAR :)
+refreshButton.addEventListener('click', () => {
+  printdata(data.films);
+})
+
+
 
 
