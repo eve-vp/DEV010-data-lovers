@@ -49,13 +49,19 @@ function showMatchingFilms(searchTerm) {
       <figcaption>${movie.title}</figcaption>
     </figure>`;
   }
+  // Llama a la función inicialmente para mostrar todas las películas
+printdata(data.films);
 }
-
-// Agrega un evento click al botón de búsqueda
-searchButton.addEventListener('click', () => {
+ 
+//Agrega un evento keyup al botón de búsqueda//FUNCIONA :)
+searchInput.addEventListener('keyup', () => {
   const searchTerm = searchInput.value.trim(); // Obtén el término de búsqueda y elimina espacios en blanco al inicio y final
   showMatchingFilms(searchTerm);
 });
 
-// Llama a la función inicialmente para mostrar todas las películas
-printdata(data.films);
+//Queremos que se limpie el buscador y vuelva a aparecer la data de películas // VA A FUNCIONAR :)
+searchButton.addEventListener('click', () => {
+  searchInput.value = "";
+  //start();
+})
+
