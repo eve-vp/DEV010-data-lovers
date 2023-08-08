@@ -13,6 +13,7 @@ describe('filterMoviesByTitle', () => {
     { title: 'Ponyo on the Cliff by the Sea' },
     { title: 'The Wind Rises' },
   ];  
+
   it('is a function', () => {
     // Verificar si filterMoviesByTitle es una función
     expect(typeof filterMoviesByTitle).toBe('function')
@@ -50,3 +51,15 @@ describe('anotherExample', () => {
   });
 });
 
+
+
+//1. unidad que esta siendo testeada
+describe('Products Service', function() {
+    describe('Add new product', function() {
+      //2. escenario y 3. quá se espera
+      it('When no price is specified, then the product status is pending approval', ()=> {
+        const newProduct = new ProductService().add(...);
+        expect(newProduct.status).to.equal('pendingApproval');
+      });
+    });
+  });
