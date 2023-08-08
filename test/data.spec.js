@@ -1,7 +1,6 @@
 import { filterMoviesByTitle } from '../src/data.js';
 
 // función filterMoviesByTitle:
-
 //     Si la función es una función.
 //     Si la función filtra correctamente las películas según el término de búsqueda.
 //     Si la función es insensible a mayúsculas y minúsculas en el término de búsqueda.
@@ -28,8 +27,9 @@ describe('filterMoviesByTitle', () => {
    expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
   });
 
+   // mayúsculas y minúsculas en el término de búsqueda
   it('is case-insensitive', () => {
-    const searchTerm = 'AwAy';
+    const searchTerm = 'awAy';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
 
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
