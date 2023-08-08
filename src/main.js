@@ -46,6 +46,3 @@ searchInput.addEventListener('keyup', () => {
 refreshButton.addEventListener('click', () => {
   renderMovies(data.films, container);
 });
-
-
-
