@@ -12,3 +12,4 @@ function filterMoviesByTitle(movies, searchTerm) {
   }
   
   export { filterMoviesByTitle };
+
