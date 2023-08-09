@@ -1,6 +1,7 @@
 import { filterMoviesByTitle } from '../src/data.js';
 //import data from './data/ghibli/ghibli.js';
 
+
 // función filterMoviesByTitle:
 //     Si la función es una función.
 //     Si la función filtra correctamente las películas según el término de búsqueda.
@@ -22,7 +23,7 @@ describe('filterMoviesByTitle', () => {
 
   it('returns movies containing the search term', () => {
     // devuelve películas que contienen el término de búsqueda
-    const searchTerm = 'away';
+    const searchTerm = 'Away';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
    
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
@@ -53,7 +54,6 @@ describe('filterMoviesByTitle', () => {
 // });
 
 
-
 // 1. unidad que esta siendo testeada
 // describe('Products Service', function() {
 //     describe('Add new product', function() {
@@ -64,3 +64,4 @@ describe('filterMoviesByTitle', () => {
 //       });
 //     });
 //   });
+
