@@ -43,4 +43,3 @@ searchInput.addEventListener('keyup', () => {
 // Agrega un evento click al botón de actualización
 refreshButton.addEventListener('click', () => {
   renderMovies(data.films, container);
-});
