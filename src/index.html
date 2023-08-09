@@ -18,8 +18,6 @@
   </head>
 
   <body>
-    <!-- <div id="root"></div> -->
-    
     <header>
       <div class="logo">
         <img
@@ -59,6 +57,17 @@
           </figure> -->
         </div>
       </div>
+
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <button id="closePopup">Close</button>
+          <h2 id="popupTitle"></h2>
+          <p id="popupDescription"></p>
+          
+          <!-- Agrega más elementos para mostrar detalles adicionales -->
+        </div>
+      </div>
+      
     </main>
 
       <footer>
@@ -66,8 +75,10 @@
         <p><center>Copyright 2023© #20</center></p>
       </footer>
 
-      <!-- nodo “raíz” porque todo lo que esté dentro de él será manejado por React DOM -->
-      <div id="root"></div>
+       <!-- nodo “raíz” porque todo lo que esté dentro de él será manejado por React DOM -->
+   
+    <div id="root"></div>
+     
       <script src="main.js" type="module"></script>
 
   </body>
