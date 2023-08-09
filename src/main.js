@@ -80,3 +80,17 @@ closePopupButton.addEventListener('click', () => {
   popup.style.display = 'none';
 });
 
+
+// Obtén los elementos del campo de entrada y el botón de búsqueda
+// ... (tu código existente)
+
+// Agrega un evento click a las imágenes para abrir el popup
+container.addEventListener('click', event => {
+  const clickedImage = event.target;
+  const movieId = clickedImage.getAttribute('data-movie-id');
+  if (movieId) {
+    openPopup(movieId);
+  }
+});
+
+// ... (tu código existente)
