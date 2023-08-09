@@ -10,3 +10,4 @@ export function filterMoviesByTitle(movies, searchTerm) {
   );
 }
 
+
