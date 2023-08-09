@@ -1,4 +1,5 @@
 import { filterMoviesByTitle } from '../src/data.js';
+//import data from './data/ghibli/ghibli.js';
 
 // función filterMoviesByTitle:
 //     Si la función es una función.
@@ -25,10 +26,10 @@ describe('filterMoviesByTitle', () => {
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
    
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
-   expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
+    expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
   });
 
-   // mayúsculas y minúsculas en el término de búsqueda
+  // mayúsculas y minúsculas en el término de búsqueda
   it('is case-insensitive', () => {
     const searchTerm = 'awAy';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
@@ -37,29 +38,29 @@ describe('filterMoviesByTitle', () => {
     expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]);
   });
 
-
+  // Adicionar cuál es el error y sugerir con qué podría corrergir
 });
 
 
-describe('anotherExample', () => {
-  it('is a function', () => {
-    expect(typeof anotherExample).toBe('function');
-  });
+// describe('anotherExample', () => {
+//   it('is a function', () => {
+//     expect(typeof anotherExample).toBe('function');
+//   });
 
-  it('returns `anotherExample`', () => {
-    expect(anotherExample()).toBe('OMG');
-  });
-});
+//   it('returns `anotherExample`', () => {
+//     expect(anotherExample()).toBe('OMG');
+//   });
+// });
 
 
 
-//1. unidad que esta siendo testeada
-describe('Products Service', function() {
-    describe('Add new product', function() {
-      //2. escenario y 3. quá se espera
-      it('When no price is specified, then the product status is pending approval', ()=> {
-        const newProduct = new ProductService().add(...);
-        expect(newProduct.status).to.equal('pendingApproval');
-      });
-    });
-  });
+// 1. unidad que esta siendo testeada
+// describe('Products Service', function() {
+//     describe('Add new product', function() {
+//       2. escenario y 3. quá se espera
+//       it('When no price is specified, then the product status is pending approval', ()=> {
+//         const newProduct = new ProductService().add(...);
+//         expect(newProduct.status).to.equal('pendingApproval');
+//       });
+//     });
+//   });
