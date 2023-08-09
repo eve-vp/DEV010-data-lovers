@@ -20,7 +20,7 @@ describe('filterMoviesByTitle', () => {
 
   it('returns movies containing the search term', () => {
     // devuelve películas que contienen el término de búsqueda
-    const searchTerm = 'away';
+    const searchTerm = 'Away';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
    
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
