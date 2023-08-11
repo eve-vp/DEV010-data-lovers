@@ -6,27 +6,29 @@ export function filterMoviesByTitle(movies, searchTerm) {
   );
 }
 
-
-// Función para ordenar por año
-// Creo un array con los date_release
-// Los ordeno en orden ascendente y descendente
-// Lo vinculo a DOM
-
-
-// Obtener el array de películas desde la data
-// const films = films.title
-
-// Función para ordenar las fechas de lanzamiento
-// function sortByReleaseDate(order = 'asc') {
-//   const releaseDates = films.map(film => film.release_date);
+// Función para ordenar películas por fecha de lanzamiento
+export const sortByReleaseDate = (films, sortOrder) => {
+  // Ordenar de manera ascendente
+  if (sortOrder === 'asc') {
+    return films.slice().sort((a, b) => a.release_date - b.release_date);
+  }
   
-//   if (order === 'asc') {
-//     return releaseDates.slice().sort((a, b) => a.localeCompare(b));
-//   } else if (order === 'desc') {
-//     return releaseDates.slice().sort((a, b) => b.localeCompare(a));
-//   } else {
-//     return [];
-//   }
-// }
+  // Ordenar de manera descendente
+  if (sortOrder === 'desc') {
+    return films.slice().sort((a, b) => b.release_date - a.release_date);
+  }
+};
 
-// console.log(releaseDates);
+// Función para ordenar películas por nombre alfabéticamente
+export const sortByTitle = (films, sortOrder) => {
+  // Ordenar de manera ascendente
+  if (sortOrder === 'AZ') {
+    return films.slice().sort((a, b) => a.title.localeCompare(b.title));
+  }
+  
+  // Ordenar de manera descendente
+  if (sortOrder === 'ZA') {
+    return films.slice().sort((a, b) => b.title.localeCompare(a.title));
+  }
+};
+

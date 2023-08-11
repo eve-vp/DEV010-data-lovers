@@ -1,6 +1,6 @@
 // Importa los datos
 import data from './data/ghibli/ghibli.js';
-import { filterMoviesByTitle } from './data.js';
+import { filterMoviesByTitle , sortByReleaseDate, sortByTitle} from './data.js';
 
 // Función para crear el HTML de una película
 // Recibe un objeto movie como argumento y devuelve una cadena de texto en formato HTML
@@ -106,61 +106,23 @@ container.addEventListener('click', event => {
 // ... (tu código existente)
 
 
+//Función para vincular sort con el DOM
+const sortSelect = document.querySelector('#sort');
 
-// // Obtener el elemento del DOM
-// const sortSelect = document.getElementById('sort');
-
-// // Agregar event listener al cambio de opción
-// sortSelect.addEventListener('change', () => {
-//   const selectedValue = sortSelect.value;
+// Agregar un evento change al select
+sortSelect.addEventListener('change', () => {
+  const sortOrder = sortSelect.value; // 'asc' o 'desc'
+  const sortedFilms = sortByReleaseDate(data.films, sortOrder);
   
-//   if (selectedValue === 'descendingOrder') {
-//     const sortedDates = sortByReleaseDate('desc');
-//     updateDOM(sortedDates);
-//   } else if (selectedValue === 'ascendingOrder') {
-//     const sortedDates = sortByReleaseDate('asc');
-//     updateDOM(sortedDates);
-//   }
-// });
+  // Llamar a la función para mostrar las películas ordenadas en el DOM
+  renderMovies(sortedFilms, container);
+});
 
-
-
-
-// // Obtener el array de películas desde la data
-// const films = data.films;
-
-// // Función para ordenar las fechas de lanzamiento
-// function sortByReleaseDate(order = 'asc') {
-//   const releaseDates = films.map(film => film.release_date);
+// Agregar un evento change al select
+sortSelect.addEventListener('change', () => {
+  const sortOrder = sortSelect.value; // 'AZ - ZA'
+  const sortedFilms = sortByTitle(data.films, sortOrder);
   
-//   if (order === 'asc') {
-//     return releaseDates.slice().sort((a, b) => a.localeCompare(b));
-//   } else if (order === 'desc') {
-//     return releaseDates.slice().sort((a, b) => b.localeCompare(a));
-//   } else {
-//     return [];
-//   }
-// }
-
-// // Listener para sort by
-
-// console.log(sortByReleaseDate)
-
-// Crear un array para almacenar las fechas de lanzamiento
-// const releaseDates = films.map(film => film.release_date);
-
-// // Ordenar las fechas de lanzamiento en orden ascendente
-// const ascendingSortedDates = releaseDates.slice().sort((a, b) => a.localeCompare(b));
-
-// // Ordenar las fechas de lanzamiento en orden descendente
-// const descendingSortedDates = releaseDates.slice().sort((a, b) => b.localeCompare(a));
-
-// console.log(ascendingSortedDates)
-
-// // Crear un array para almacenar las fechas de lanzamiento
-// const releaseDates = [];
-
-// // Recorrer el array de películas y extraer las fechas de lanzamiento
-// films.forEach(film => {
-//   releaseDates.push(film.release_date);
-// });
+  // Llamar a la función para mostrar las películas ordenadas en el DOM
+  renderMovies(sortedFilms, container);
+});

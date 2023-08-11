@@ -46,11 +46,12 @@ nav {
 
 .search-container{
   height: 30px;
-  width: 100px;
+  width: 80px;
+  max-width: 120px;
   position: relative;
   left: 100px;
   top: 20px;  
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
 }
 
 input.src{
@@ -99,7 +100,7 @@ nav #sort{
   width: 150px;
   height: 30px;
   margin-left: 10px;
-  /* flex-grow: 1; */
+  flex-grow: 1;
 }
 
 p {
