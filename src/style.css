@@ -110,27 +110,25 @@ figcaption {
   
 }
 
-.popup {
-  display: none;
+/* Estilos para el diálogo */
+#movieDetails {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 80%;
-  max-width: 600px;
+  background-color: white;
   padding: 20px;
   border-radius: 10px;
-  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: none; /* Inicialmente oculto */
 }
 
-.popup-content {
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-#closePopup {
+/* Estilos para el botón de cerrar */
+#closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
 }
