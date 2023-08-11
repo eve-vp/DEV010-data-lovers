@@ -10,9 +10,9 @@
     <!-- para agregar favicon https://codigonaranja.com/curso-html-como-agregar-un-favicon-icono -->
     <link
       rel="shortcut icon"
-      href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg"
-    />
+      href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg"/>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/b0634a348a.js" crossorigin="anonymous"></script>
     <!--<style>.nav-title-mobile {display: none;}.list-menu--disclosure{display: none;position: absolute;min-width: 100%;width: 22rem;background-color: var(--bg-white);box-shadow: 0 1px 4px 0 rgb(0 0 0 / 15%);padding: 5px 0 5px 20px;opacity: 0;visibility: visible;pointer-events: none;transition:</style>
     -----Este estilo oculta el título de navegación en la versión móvil del sitio web.-->
   </head>
@@ -30,8 +30,9 @@
     <nav>
       <!-- Campo de entrada y botón de búsqueda -->
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search">
-        <button id="refreshButton">Refresh</button>
+        <input type="text" id="searchInput" placeholder="Search..." class="src" autocomplete="off" >
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+        <!-- <button id="refreshButton">Refresh</button> -->
       </div>
 
       <div class="filters">
@@ -44,6 +45,8 @@
         </select>
       </div>
     </nav>
+
+    <p id="noResultsMessage" style="display: none">No results found...</p>
 
     <main>
       <div class="grid-container">
