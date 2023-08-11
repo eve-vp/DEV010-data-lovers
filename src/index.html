@@ -38,15 +38,19 @@
       <div class="filters">
         <label for="sort">Sort by:</label>
         <select id="sort">
-          <option value="alphabetically-AZ">Alphabetically, A-Z</option>
-          <option value="alphabetically-ZA">Alphabetically, Z-A</option>
-          <option value="date-new-old">Date, new to old</option>
-          <option value="date-old-new">Date, old to new</option>
+          <option value="AZ">Alphabetically, A-Z</option>
+          <option value="ZA">Alphabetically, Z-A</option>
+          <option value="desc">Date, old to new</option>
+          <option value="asc">Date, new to old</option>
         </select>
       </div>
     </nav>
 
     <p id="noResultsMessage" style="display: none">No results found...</p>
+
+    <div id="movieList">
+      <!-- Aquí se mostrará la lista de películas -->
+    </div>
 
     <main>
       <div class="grid-container">
