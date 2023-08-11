@@ -1,7 +1,6 @@
 import { filterMoviesByTitle } from '../src/data.js';
 //import data from './data/ghibli/ghibli.js';
 
-
 // función filterMoviesByTitle:
 //     Si la función es una función.
 //     Si la función filtra correctamente las películas según el término de búsqueda.
@@ -54,6 +53,7 @@ describe('filterMoviesByTitle', () => {
 // });
 
 
+
 // 1. unidad que esta siendo testeada
 // describe('Products Service', function() {
 //     describe('Add new product', function() {
@@ -64,4 +64,3 @@ describe('filterMoviesByTitle', () => {
 //       });
 //     });
 //   });
-

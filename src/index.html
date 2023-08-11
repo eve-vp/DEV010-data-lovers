@@ -10,9 +10,9 @@
     <!-- para agregar favicon https://codigonaranja.com/curso-html-como-agregar-un-favicon-icono -->
     <link
       rel="shortcut icon"
-      href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg"
-    />
+      href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg"/>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/b0634a348a.js" crossorigin="anonymous"></script>
     <!--<style>.nav-title-mobile {display: none;}.list-menu--disclosure{display: none;position: absolute;min-width: 100%;width: 22rem;background-color: var(--bg-white);box-shadow: 0 1px 4px 0 rgb(0 0 0 / 15%);padding: 5px 0 5px 20px;opacity: 0;visibility: visible;pointer-events: none;transition:</style>
     -----Este estilo oculta el título de navegación en la versión móvil del sitio web.-->
   </head>
@@ -30,20 +30,27 @@
     <nav>
       <!-- Campo de entrada y botón de búsqueda -->
       <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search">
-        <button id="refreshButton">Refresh</button>
+        <input type="text" id="searchInput" placeholder="Search..." class="src" autocomplete="off" >
+        <i class="fa-solid fa-magnifying-glass icon"></i>
+        <!-- <button id="refreshButton">Refresh</button> -->
       </div>
 
       <div class="filters">
         <label for="sort">Sort by:</label>
         <select id="sort">
-          <option value="alphabetically-AZ">Alphabetically, A-Z</option>
-          <option value="alphabetically-ZA">Alphabetically, Z-A</option>
-          <option value="date-new-old">Date, new to old</option>
-          <option value="date-old-new">Date, old to new</option>
+          <option value="AZ">Alphabetically, A-Z</option>
+          <option value="ZA">Alphabetically, Z-A</option>
+          <option value="desc">Date, old to new</option>
+          <option value="asc">Date, new to old</option>
         </select>
       </div>
     </nav>
+
+    <p id="noResultsMessage" style="display: none">No results found...</p>
+
+    <div id="movieList">
+      <!-- Aquí se mostrará la lista de películas -->
+    </div>
 
     <main>
       <div class="grid-container">
@@ -57,6 +64,17 @@
           </figure> -->
         </div>
       </div>
+
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <button id="closePopup">Close</button>
+          <h2 id="popupTitle"></h2>
+          <p id="popupDescription"></p>
+          
+          <!-- Agrega más elementos para mostrar detalles adicionales -->
+        </div>
+      </div>
+      
     </main>
 
       <footer>
