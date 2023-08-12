@@ -181,13 +181,14 @@ figcaption {
   right: 10px;
 }
 
-/* Estilo para ocultar el contenedor del popup */
+/*///////////////////////////////// REVISAR 12-08
+/* Estilo para ocultar el contenedor del popup
 .hidden {
   display: none;
 }
 
 /* Estilo para el contenedor del popup */
-#popupContainer {
+/* #popupContainer {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -196,4 +197,4 @@ figcaption {
   padding: 20px;
   border: 2px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+} */ 
