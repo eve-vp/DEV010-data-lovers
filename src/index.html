@@ -55,26 +55,29 @@
     <main>
       <div class="grid-container">
         <div class="movie-grid">
-          <!--ESTO SE FUE A JS EN MAIN.JS 
-            <figure>
-            <img
-              src="https://ghiblicollection.com/cdn/shop/products/CITS_Cover_SB_72dpi.png?v=1675274073"
-              alt="Castle in the Sky"/>
-            <figcaption>Castle in the Sky</figcaption>
-          </figure> -->
-        </div>
-      </div>
-
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <button id="closePopup">Close</button>
-          <h2 id="popupTitle"></h2>
-          <p id="popupDescription"></p>
+    
+          <button id="openPopupButton">Open Movie Info</button> <button id="openPopupButton">Open Movie Info</button>
+          <div id="popupContainer" class="hidden">
+          <button id="closePopupButton">Close Movie Info</button>
           
-          <!-- Agrega más elementos para mostrar detalles adicionales -->
+            <h2>${movie.title}</h2>
+            <p>Release Year: ${movie.releaseYear}</p>
+            <p>Director: ${movie.director}</p>
+            <p>Producer: ${movie.producer}</p>
+            <p>Description: ${movie.description}</p>
+            <p>People: ${movie.people}</p>
+            <img src="${movie.posterURL}" alt="${movie.title} Poster" />
+  </div>
+</div>
+
+  </div>
+</div>    
         </div>
       </div>
-      
+          
+  </div>
+
+                    
     </main>
 
       <footer>
@@ -87,7 +90,7 @@
     <div id="root"></div>
      
       <script src="main.js" type="module"></script>
-
+     
   </body>
 
 </html> 
