@@ -24,24 +24,23 @@ function showMatchingFilms(movies, searchTerm, container) {
 function renderMovies(movies, container) {
   // MODIFCACIóN 12-08
   if (Array.isArray(movies) && movies.length > 0) {
-  const moviesHTML = movies.map(createMovieHTML).join('');
+    const moviesHTML = movies.map(createMovieHTML).join('');
     // MODIFCACIóN 12-08
   } else {
   // Manejar el caso en el que "movies" no está definido o es una matriz vacía
-  container.innerHTML = moviesHTML;
-}
-}
-
+    container.innerHTML = moviesHTML;
+  }
   // Asegurarse de que todas las imágenes tengan el mismo tamaño
   const movieImages = container.querySelectorAll('img');
   movieImages.forEach(image => {
     image.style.height = '260px'; // Establecer la misma altura para todas las imágenes
   });
-
+}
 
 // Obtén los elementos del campo de entrada y el botón de búsqueda
 const searchInput = document.querySelector('#searchInput');
 //const refreshButton = document.querySelector('#refreshButton');
+//   43:9  error  Parsing error: Identifier 'container' has already been declared
 const container = document.querySelector('.movie-grid');
 const noResultsMessage = document.querySelector('#noResultsMessage');
 
@@ -76,7 +75,16 @@ const sortSelect = document.querySelector('#sort');
 // Agregar un evento change al select
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value; // 'asc' o 'desc'
-  const sortedFilms = sortByReleaseDate(data.films, sortOrder);
+  //  Para que funcione correctamente agregamos un arreglo luego del test
+  let sortedFilms
+  
+  if (sortOrder === 'asc' || sortOrder === 'desc') { //OR (el resultado es verdadero si alguna expresión es verdadera)
+    const sortedFilms = sortByReleaseDate(data.films, sortOrder);  
+  } 
+  else if (sortOrder === 'AZ' || sortOrder === 'ZA') {
+    sortedFilms = sortByTitle(data.films, sortOrder);
+  }
+  
   
   // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
@@ -85,8 +93,14 @@ sortSelect.addEventListener('change', () => {
 // Agregar un evento change al select
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value; // 'AZ - ZA'
-  const sortedFilms = sortByTitle(data.films, sortOrder);
+  let sortedFilms; // Modificado luego del test conviertiendolo en arreglo
   
+  if (sortOrder === 'asc' || sortOrder === 'desc') {
+  } 
+  else if (sortOrder === 'AZ' || sortOrder === 'ZA') {
+    const sortedFilms = sortByTitle(data.films, sortOrder);// paso al final
+  } 
+
   // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
 });
@@ -102,44 +116,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const popupContainer = document.getElementById("popupContainer");
 
 
-// Evento al hacer clic en el botón "Open Movie Info"
-openPopupButton.addEventListener("click", () => {
+  // Evento al hacer clic en el botón "Open Movie Info"
+  openPopupButton.addEventListener("click", () => {
   // Cargar los datos de la película y mostrar el popup
-  loadMovieData((movieData) => {
-    const popupContent = createPopupHTML(movieData);
-    showPopup(popupContent);
+    loadMovieData((movieData) => {
+      const popupContent = createPopupHTML(movieData);
+      showPopup(popupContent);
   });
-});
+  });
 
-  function createPopupHTML(movie) {
-  return `
+    function createPopupHTML(movie) {
+    return `
     <div class="popup-content">
       <h2>${movie.title}</h2>
       <p>Release Year: ${movie.releaseYear}</p>
       <p>Director: ${movie.director}</p>
-      <p>Producer: ${movie.producer}</p>
+        <p>Producer: ${movie.producer}</p>
       <p>Description: ${movie.description}</p>
-      <p>People: ${movie.people}</p>
-      <img src="${movie.posterURL}" alt="${movie.title} Poster" />
+        <p>People: ${movie.people}</p>
+        <img src="${movie.posterURL}" alt="${movie.title} Poster" />
     </div>
-  `;
-}
+    `;
+  }
 
-// Función para mostrar el popup
-function showPopup(content) {
-  // Mostrar el contenido del popup en el contenedor
-  popupContainer.innerHTML = content;
-  // Mostrar el contenedor del popup
-  popupContainer.classList.remove("hidden");
-}
+  // Función para mostrar el popup
+  function showPopup(content) {
+    // Mostrar el contenido del popup en el contenedor
+    popupContainer.innerHTML = content;
+    // Mostrar el contenedor del popup
+    popupContainer.classList.remove("hidden");
+  }
 
-// Función para ocultar el popup
-function hidePopup() {
-  // Ocultar el contenedor del popup
-  popupContainer.classList.add("hidden");
-  // Limpiar el contenido del popup
-  popupContainer.innerHTML = "";
-}
+  // Función para ocultar el popup
+  function hidePopup() {
+    // Ocultar el contenedor del popup
+    popupContainer.classList.add("hidden");
+    // Limpiar el contenido del popup
+    popupContainer.innerHTML = "";
+  }
 });
 
 // Evento al hacer clic en el botón "Close Movie Info"
