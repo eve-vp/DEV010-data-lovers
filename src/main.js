@@ -4,16 +4,6 @@ import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js'
 
 const containerCard = document.querySelector(".grid-container");
 
-// Función para crear el HTML de una película
-// function createMovieHTML(movie) {
-//   return `
-//     <figure>
-//       <img src="${movie.poster}" id="data-movie-id" alt="${movie.title}" />
-//       <figcaption>${movie.title}</figcaption>
-//     </figure>
-//   `;
-// }
-
 const createMovieHTML = (movie) => {
   const figure = document.createElement('figure');
   const img = document.createElement('img');
