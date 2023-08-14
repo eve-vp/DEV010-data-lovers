@@ -1,6 +1,6 @@
 import { filterMoviesByTitle } from '../src/data.js';
 import { sortByReleaseDate } from '../src/data.js';
-import { sortByTitle } from './data.js';
+import { sortByTitle } from '../src/data.js';
 
 //import data from './data/ghibli/ghibli.js';
 
@@ -28,7 +28,6 @@ describe('filterMoviesByTitle', () => {
     // devuelve películas que contienen el término de búsqueda
     const searchTerm = 'Away';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
-   
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
     expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
   });
@@ -49,11 +48,11 @@ describe('filterMoviesByTitle', () => {
 // ascendente o descendente por año
 
 describe('sortByReleaseDate', () => {
-  const films = [
-  { title: 'Film 1', release_date: '1996-01-01' },
-  { title: 'Film 2', release_date: '1984-01-01' },
-  { title: 'Film 3', release_date: '2004-01-01' },
-ru];
+    const films = [
+    { title: 'Film 1', release_date: '1996-01-01' },
+    { title: 'Film 2', release_date: '1984-01-01' },
+    { title: 'Film 3', release_date: '2004-01-01' },
+];
 
   it('should sort films by release date in ascending order', () => {
     const sortedFilms = sortByReleaseDate(films, 'asc');
@@ -97,7 +96,7 @@ describe('sortByTitle', () => {
   });
 
   it('should sort films by title in descending order', () => {
-    const sortedFilms = sortByTitle(data.films, 'ZA');
+    const sortedFilms = sortByTitle(films, 'ZA');
     // Asegurarse de que las películas estén ordenadas correctamente
     expect(sortedFilms).toEqual([
       { title: 'Film C', release_date: '2004-01-01' },
