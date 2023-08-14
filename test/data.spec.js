@@ -1,5 +1,9 @@
 import { filterMoviesByTitle } from '../src/data.js';
+import { sortByReleaseDate } from '../src/data.js';
+import { sortByTitle } from '../src/data.js';
+
 //import data from './data/ghibli/ghibli.js';
+
 
 // función filterMoviesByTitle:
 //     Si la función es una función.
@@ -24,7 +28,6 @@ describe('filterMoviesByTitle', () => {
     // devuelve películas que contienen el término de búsqueda
     const searchTerm = 'Away';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
-   
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
     expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
   });
@@ -41,26 +44,64 @@ describe('filterMoviesByTitle', () => {
   // Adicionar cuál es el error y sugerir con qué podría corrergir
 });
 
+// Test para el orden según
+// ascendente o descendente por año
 
-// describe('anotherExample', () => {
-//   it('is a function', () => {
-//     expect(typeof anotherExample).toBe('function');
-//   });
+describe('sortByReleaseDate', () => {
+  const films = [
+    { title: 'Film 1', release_date: '1996-01-01' },
+    { title: 'Film 2', release_date: '1984-01-01' },
+    { title: 'Film 3', release_date: '2004-01-01' },
+  ];
 
-//   it('returns `anotherExample`', () => {
-//     expect(anotherExample()).toBe('OMG');
-//   });
-// });
+  it('should sort films by release date in ascending order', () => {
+    const sortedFilms = sortByReleaseDate(films, 'asc');
+    // Asegurarse de que las películas estén ordenadas correctamente
+    expect(sortedFilms).toEqual([
+      { title: 'Film 1', release_date: '1984-01-01' },
+      { title: 'Film 2', release_date: '1996-01-01' },
+      { title: 'Film 3', release_date: '2004-01-01' },
+    ]);
+  });
 
+  it('should sort films by release date in descending order', () => {
+    const sortedFilms = sortByReleaseDate(films, 'desc');
+    // Asegurarse de que las películas estén ordenadas correctamente
+    expect(sortedFilms).toEqual([
+      { title: 'Film 3', release_date: '2004-01-01' },
+      { title: 'Film 1', release_date: '1984-01-01' },
+      { title: 'Film 2', release_date: '1996-01-01' },
+    ]);
+  });
+});
 
+// Test para el orden según
+//  A-Z o Z-A
 
-// 1. unidad que esta siendo testeada
-// describe('Products Service', function() {
-//     describe('Add new product', function() {
-//       2. escenario y 3. quá se espera
-//       it('When no price is specified, then the product status is pending approval', ()=> {
-//         const newProduct = new ProductService().add(...);
-//         expect(newProduct.status).to.equal('pendingApproval');
-//       });
-//     });
-//   });
+describe('sortByTitle', () => {
+  const films = [
+    { title: 'Film C', release_date: '2004-01-01' },
+    { title: 'Film A', release_date: '1984-01-01' },
+    { title: 'Film B', release_date: '1996-01-01' },
+  ];
+
+  it('should sort films by title in ascending order', () => {
+    const sortedFilms = sortByTitle(films, 'AZ');
+    // Asegurarse de que las películas estén ordenadas correctamente
+    expect(sortedFilms).toEqual([
+      { title: 'Film A', release_date: '1984-01-01' },
+      { title: 'Film B', release_date: '1996-01-01' },
+      { title: 'Film C', release_date: '2004-01-01' },
+    ]);
+  });
+
+  it('should sort films by title in descending order', () => {
+    const sortedFilms = sortByTitle(films, 'ZA');
+    // Asegurarse de que las películas estén ordenadas correctamente
+    expect(sortedFilms).toEqual([
+      { title: 'Film C', release_date: '2004-01-01' },
+      { title: 'Film B', release_date: '1996-01-01' },
+      { title: 'Film A', release_date: '1984-01-01' },
+    ]);
+  });
+});

@@ -34,51 +34,41 @@ header img {
 /* Estilos para la barra de navegación */
 nav {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea */
-  /* gap: 20px; https://www.bisign.es/css/gap/ es el espacio entre filas y columnas dentro de la cuadrícula */
-  padding: 10px 50px;
-  gap: 20px;
+  flex-wrap: nowrap; /*Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea*/
   justify-content: space-around;
 }
 
 .search-container{
-  height: 30px;
-  width: 80px;
-  max-width: 120px;
   position: relative;
-  left: 100px;
-  top: 20px;  
-  transform: translate(-50%, -50%);
 }
 
 input.src{
-  padding: 5px 40px;
+  padding: 5px 35px;
   outline: none;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 8px;
   color: #444;
-  border: 1px solid #837e81;
-  width: 60px;
-  transition: all .5s;
+  border: 1px solid #f0f0f0;
+  width: 50px;
+  transition: all .3s;
+  height: 25px;
 }
 
 input.src:hover{
-  width: 150px;
-  max-width: 200px;
-  background-color: #fff;
-  border-color:#474747;
-  box-shadow: 0 0 5px #d5c7fb;
+  width: 130px;
+  max-width: 150px;
+  background-color: #f0f0f0;
+  border-color:#f0f0f0;
+  box-shadow: 0 0 5px #f0f0f0;
 }
 
 .icon{
-  font-size: 15px;
+  font-size: 16px;
   position: absolute;
-  top: 20%;
-  left: 8px;
-  color:#444;
+  top: 28%;
+  left: 10px;
+  color:#cccbcb;
 }
 
 /* Estilos para los filtros */
@@ -89,23 +79,24 @@ nav .filters {
   justify-content: space-around;
   padding: 15px 40px;
   max-width: fit-content;
+  align-items: baseline;
 }
 
 nav #sort{
   padding: 5px;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 8px;
   color: #444;
-  border: 1px solid #837e81;
+  border: 1px solid #f0f0f0;
   width: 150px;
-  height: 30px;
+  height: 35px;
   margin-left: 10px;
   flex-grow: 1;
 }
 
-p {
+#noResultsMessage {
   font-size: 18px;
-  padding: 20px 50px;
+  padding: 50px 100px;
 }
 
 /* Estilos para el contenedor de la cuadrícula */
@@ -143,7 +134,7 @@ figure {
 
 img {
   width: 100%;
-  /* height: 260px; Aumentar la altura de las imágenes */
+  height: 260px;
   border-radius: 5px 5px 5px 5px;
   object-fit: cover;
 }
@@ -156,27 +147,48 @@ figcaption {
   padding: 3px;
 }
 
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
+.box {
+  color: black;
 }
 
-.popup-content {
-  max-height: 80vh;
-  overflow-y: auto;
+#popupDialog {
+  width: 500px;
+  height: 500px;
 }
 
-#closePopup {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+#popupDialog h2 {
+  font-size: 20px;
 }
+
+#popupDialog p {
+  font-size: 15px;
+}
+  
+.closeButton {
+    border: 1px solid #e5e2d9;
+    margin-top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    background-color: #d63f31;
+    border-radius: 5px;
+    padding: 5px 5px;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 35px;
+  }
+
+  .closeButton:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    background-color: #f50000;  
+  }
+
+  .modal-open {
+    opacity: 0.5;
+    /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
+    /* 0 es completamente transparente, 1 es completamente opaco */
+  }
+

@@ -1,18 +1,21 @@
 // Importa los datos
 import data from './data/ghibli/ghibli.js';
-import { filterMoviesByTitle , sortByReleaseDate, sortByTitle} from './data.js';
+import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
-// Función para crear el HTML de una película
-// Recibe un objeto movie como argumento y devuelve una cadena de texto en formato HTML
-// Contiene una estructura de figura que incluye una imagen con la URL del póster y el título de la película como atributos
-function createMovieHTML(movie) {
-  return `
-    <figure>
-      <img src="${movie.poster}" alt="${movie.title}" />
-      <figcaption>${movie.title}</figcaption>
-    </figure>
-  `;
-}
+const containerCard = document.querySelector(".grid-container");
+
+const createMovieHTML = (movie) => {
+  const figure = document.createElement('figure');
+  const img = document.createElement('img');
+  img.src = movie.poster;
+  img.alt = movie.title;
+  img.id = 'data-movie-id';
+  const figcaption = document.createElement('figcaption');
+  figcaption.textContent = movie.title;
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+  return figure.outerHTML;
+};
 
 // Función para mostrar las películas que coinciden con el término de búsqueda
 function showMatchingFilms(movies, searchTerm, container) {
@@ -20,21 +23,23 @@ function showMatchingFilms(movies, searchTerm, container) {
   renderMovies(matchingFilms, container);
 }
 
-// Función para renderizar las películas en el contenedor
+const popUp = document.createElement('dialog');
+document.body.appendChild(popUp);
+popUp.setAttribute('id', 'popupDialog');
+containerCard.appendChild(popUp);
+
 function renderMovies(movies, container) {
   const moviesHTML = movies.map(createMovieHTML).join('');
   container.innerHTML = moviesHTML;
 
-  // Asegurarse de que todas las imágenes tengan el mismo tamaño
   const movieImages = container.querySelectorAll('img');
   movieImages.forEach(image => {
-    image.style.height = '260px'; // Establecer la misma altura para todas las imágenes
+    image.style.height = '260px';
   });
 }
 
-// Obtén los elementos del campo de entrada y el botón de búsqueda
+// Obtén los elementos del campo de entrada y el contenedor
 const searchInput = document.querySelector('#searchInput');
-//const refreshButton = document.querySelector('#refreshButton');
 const container = document.querySelector('.movie-grid');
 const noResultsMessage = document.querySelector('#noResultsMessage');
 
@@ -56,56 +61,6 @@ searchInput.addEventListener('keyup', () => {
   }
 });
 
-// Agrega un evento click al botón de actualización
-// refreshButton.addEventListener('click', () => {
-//   container.value = '';
-//   renderMovies(data.films, container);
-// });
-
-
-// Obtén el elemento del popup y los elementos para mostrar la información
-const popup = document.getElementById('popup');
-const popupTitle = document.getElementById('popupTitle');
-const popupDescription = document.getElementById('popupDescription');
-const closePopupButton = document.getElementById('closePopup');
-
-// Agrega un evento click a las imágenes de las películas
-container.addEventListener('click', (event) => {
-  const movieImage = event.target.closest('img');
-  if (movieImage) {
-    const movieId = movieImage.dataset.movieId; // Asegúrate de tener un atributo 'data-movie-id' en la imagen
-    const selectedMovie = data.films.find(movie => movie.id === movieId);
-    
-    if (selectedMovie) {
-      popupTitle.textContent = selectedMovie.title;
-      popupDescription.textContent = selectedMovie.description;
-      // Actualiza más detalles del popup con la información de la película
-      popup.style.display = 'block';
-    }
-  }
-});
-
-// Agrega un evento click para cerrar el popup
-closePopupButton.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
-
-
-// Obtén los elementos del campo de entrada y el botón de búsqueda
-// ... (tu código existente)
-
-// Agrega un evento click a las imágenes para abrir el popup
-container.addEventListener('click', event => {
-  const clickedImage = event.target;
-  const movieId = clickedImage.getAttribute('data-movie-id');
-  if (movieId) {
-    openPopup(movieId);
-  }
-});
-
-// ... (tu código existente)
-
-
 //Función para vincular sort con el DOM
 const sortSelect = document.querySelector('#sort');
 
@@ -126,3 +81,44 @@ sortSelect.addEventListener('change', () => {
   // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
 });
+
+// Función para mostrar el popup de la película
+const showMoviePopup = (movie) => {
+  const popContent = `
+      <h2>${movie.title}</h2>
+      <p>Release Year: ${movie.releaseYear}</p>
+      <p>Director: ${movie.director}</p>
+      <p>Producer: ${movie.producer}</p>
+      <p>Description: ${movie.description}</p>
+      <img src="${movie.poster}" alt="${movie.title} Poster" />
+    `;
+
+  popUp.innerHTML = popContent;
+  
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("closeButton");
+  closeButton.textContent = "Cerrar";
+  popUp.appendChild(closeButton);
+  
+  closeButton.addEventListener('click', () => {
+    popUp.close();
+  });
+  
+  popUp.showModal();
+};
+
+const showMoviesInCards = (movies) => {
+  container.innerHTML = '';
+  movies.forEach((movie, index) => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('box');
+    movieCard.dataset.movieIndex = index;
+    movieCard.innerHTML = createMovieHTML(movie);
+    movieCard.addEventListener('click', () => {
+      showMoviePopup(movie);
+    });
+    container.appendChild(movieCard);
+  });
+};
+
+showMoviesInCards(data.films);
