@@ -34,51 +34,41 @@ header img {
 /* Estilos para la barra de navegación */
 nav {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea */
-  /* gap: 20px; https://www.bisign.es/css/gap/ es el espacio entre filas y columnas dentro de la cuadrícula */
-  padding: 10px 50px;
-  gap: 20px;
+  flex-wrap: nowrap; /*Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea*/
   justify-content: space-around;
 }
 
 .search-container{
-  height: 30px;
-  width: 80px;
-  max-width: 120px;
   position: relative;
-  left: 100px;
-  top: 20px;  
-  transform: translate(-50%, -50%);
 }
 
 input.src{
-  padding: 5px 40px;
+  padding: 5px 35px;
   outline: none;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 8px;
   color: #444;
-  border: 1px solid #837e81;
-  width: 60px;
-  transition: all .5s;
+  border: 1px solid #f0f0f0;
+  width: 50px;
+  transition: all .3s;
+  height: 25px;
 }
 
 input.src:hover{
-  width: 150px;
-  max-width: 200px;
-  background-color: #fff;
-  border-color:#474747;
-  box-shadow: 0 0 5px #d5c7fb;
+  width: 130px;
+  max-width: 150px;
+  background-color: #f0f0f0;
+  border-color:#f0f0f0;
+  box-shadow: 0 0 5px #f0f0f0;
 }
 
 .icon{
-  font-size: 15px;
+  font-size: 16px;
   position: absolute;
-  top: 20%;
-  left: 8px;
-  color:#444;
+  top: 28%;
+  left: 10px;
+  color:#cccbcb;
 }
 
 /* Estilos para los filtros */
@@ -89,23 +79,24 @@ nav .filters {
   justify-content: space-around;
   padding: 15px 40px;
   max-width: fit-content;
+  align-items: baseline;
 }
 
 nav #sort{
   padding: 5px;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 8px;
   color: #444;
-  border: 1px solid #837e81;
+  border: 1px solid #f0f0f0;
   width: 150px;
-  height: 30px;
+  height: 35px;
   margin-left: 10px;
   flex-grow: 1;
 }
 
 p {
   font-size: 18px;
-  padding: 20px 50px;
+  padding: 50px 100px;
 }
 
 /* Estilos para el contenedor de la cuadrícula */
@@ -156,7 +147,7 @@ figcaption {
   padding: 3px;
 }
 
-.popup {
+/* .popup {
   display: none;
   position: fixed;
   top: 50%;
@@ -179,7 +170,7 @@ figcaption {
   position: absolute;
   top: 10px;
   right: 10px;
-}
+} */
 
 /*///////////////////////////////// REVISAR 12-08
 /* Estilo para ocultar el contenedor del popup
@@ -198,3 +189,215 @@ figcaption {
   border: 2px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 } */ 
+
+
+/*PRUEBAS DE POPUP*/
+@media(max-width:1100px) {
+  #popupDialog {
+      border: 2px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 20px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;  
+  }
+}
+
+@media(min-width:1100px) {
+  #popupDialog {
+      border: 2px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      width: 600px;
+      height: 600px;
+      text-align:center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 18px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;  
+  }
+}
+
+#popupDialog::-webkit-scrollbar {
+  width: 12px;              
+}
+
+#popupDialog::-webkit-scrollbar-track {
+  background:  #FFFFF9;       
+}
+
+#popupDialog::-webkit-scrollbar-thumb {
+  background-color: #F8E9CA;    
+  border-radius: 20px;       
+  border: 3px solid  #FFFFF9; 
+}
+
+
+
+@media (max-width:1100px) {
+  .box {
+      border: 1px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      width: 260px;
+      height: 190px;
+      padding: 20px 20px 15px 20px;
+      margin: auto;
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 15px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: box-shadow 500ms;
+      transition: opacity 500ms;
+      
+   }
+}
+
+@media (min-width:1100px) {
+  .box {
+      border: 1px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      width: 260px;
+      height: 170px;
+      padding: 20px 20px 15px 20px;
+      margin: auto;
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 12px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: box-shadow 500ms;
+      transition: opacity 500ms;
+      
+   }
+}
+  
+.box:hover {
+  box-shadow: 15px 15px 15px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+  background-color: #f2b132;
+}
+
+@media (max-width:1100px) {
+  .grid-container {
+      grid-template-columns: auto auto auto;
+      display: grid;
+      margin: auto;
+      padding: 20px;
+  }
+}
+
+
+@media (min-width:1100px) {
+  .grid-container {
+      grid-template-columns: auto auto auto auto;
+      display: grid;
+      margin: auto;
+      padding: 20px;
+  }
+}
+
+@media(max-width:1100px) {
+  #popupDialog {
+      border: 2px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      text-align: center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 40px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+  }
+}
+
+@media(min-width:1100px) {
+  #popupDialog {
+      border: 2px solid #575344;
+      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      background-color: #FFFFF9;
+      width: 600px;
+      height: 600px;
+      text-align:center;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 18px;
+      color: #575344;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+  }
+}
+
+@media (max-width:1100px) {
+  .closeButton {
+    border: 1px solid #e5e2d9;
+    margin-top: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    background-color: #d63f31;
+    border-radius: 5px;
+    padding: 5px 5px;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 70px;
+    width: 140px;
+   
+    } 
+  }
+
+  @media(min-width:1100px) {
+    .closeButton {
+      border: 1px solid #e5e2d9;
+      margin-top: 20px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      background-color: #d63f31;
+      border-radius: 5px;
+      padding: 5px 5px;
+      display: inline-block;
+      cursor: pointer;
+      box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+      height: 35px;
+     
+    } 
+    } 
+
+  .closeButton:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    background-color: #f50000;  
+  }
+
+  .modal-open {
+    opacity: 0.5;
+    /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
+    /* 0 es completamente transparente, 1 es completamente opaco */
+  }
