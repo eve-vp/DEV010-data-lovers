@@ -1,18 +1,21 @@
 // Importa los datos
 import data from './data/ghibli/ghibli.js';
-import { filterMoviesByTitle, sortByReleaseDate, sortByTitle} from './data.js';
+import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
-// Función para crear el HTML de una película
-// Recibe un objeto movie como argumento y devuelve una cadena de texto en formato HTML
-// Contiene una estructura de figura que incluye una imagen con la URL del póster y el título de la película como atributos
-function createMovieHTML(movie) {
-  return `
-    <figure>
-      <img src="${movie.poster}" alt="${movie.title}" />
-      <figcaption>${movie.title}</figcaption>
-    </figure>
-  `;
-}
+const containerCard = document.querySelector(".grid-container");
+
+const createMovieHTML = (movie) => {
+  const figure = document.createElement('figure');
+  const img = document.createElement('img');
+  img.src = movie.poster;
+  img.alt = movie.title;
+  img.id = 'data-movie-id';
+  const figcaption = document.createElement('figcaption');
+  figcaption.textContent = movie.title;
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+  return figure.outerHTML;
+};
 
 // Función para mostrar las películas que coinciden con el término de búsqueda
 function showMatchingFilms(movies, searchTerm, container) {
@@ -20,32 +23,23 @@ function showMatchingFilms(movies, searchTerm, container) {
   renderMovies(matchingFilms, container);
 }
 
+const popUp = document.createElement('dialog');
+document.body.appendChild(popUp);
+popUp.setAttribute('id', 'popupDialog');
+containerCard.appendChild(popUp);
 
-
-// Función para renderizar las películas en el contenedor
 function renderMovies(movies, container) {
-  let moviesHTML; // Declarar moviesHTML fuera de la condición
-  // MODIFCACIóN 12-08
-  if (Array.isArray(movies) && movies.length > 0) {
-    moviesHTML = movies.map(createMovieHTML).join('');
-    // MODIFCACIóN 12-08
-  } else {
-    // Manejar el caso en el que "movies" no está definido o es una matriz vacía
-    // container.innerHTML = moviesHTML;
-    container.innerHTML = '';
-  }
-  // Asegurarse de que todas las imágenes tengan el mismo tamaño
-  container.innerHTML = moviesHTML; 
+  const moviesHTML = movies.map(createMovieHTML).join('');
+  container.innerHTML = moviesHTML;
+
   const movieImages = container.querySelectorAll('img');
   movieImages.forEach(image => {
-    image.style.height = '260px'; // Establecer la misma altura para todas las imágenes
+    image.style.height = '260px';
   });
 }
 
-// Obtén los elementos del campo de entrada y el botón de búsqueda
+// Obtén los elementos del campo de entrada y el contenedor
 const searchInput = document.querySelector('#searchInput');
-//const refreshButton = document.querySelector('#refreshButton');
-//   43:9  error  Parsing error: Identifier 'container' has already been declared
 const container = document.querySelector('.movie-grid');
 const noResultsMessage = document.querySelector('#noResultsMessage');
 
@@ -67,32 +61,72 @@ searchInput.addEventListener('keyup', () => {
   }
 });
 
-// Agrega un evento click al botón de actualización
-// refreshButton.addEventListener('click', () => {
-//   container.value = '';
-//   renderMovies(data.films, container);
-// });
-
-
 //Función para vincular sort con el DOM
 const sortSelect = document.querySelector('#sort');
-const Container = document.querySelector('#movies-container');
 
 // Agregar un evento change al select
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value; // 'asc' o 'desc'
-  //  Para que funcione correctamente agregamos un arreglo luego del test
-  let sortedFilms;
-  
-  if (sortOrder === 'asc' || sortOrder === 'desc') { //OR (el resultado es verdadero si alguna expresión es verdadera)
-    sortedFilms = sortByReleaseDate(data.films, sortOrder);  
-  } 
-  else if (sortOrder === 'AZ' || sortOrder === 'ZA') {
-    sortedFilms = sortByTitle(data.films, sortOrder);
-  }
-  
+  const sortedFilms = sortByReleaseDate(data.films, sortOrder);
   
   // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
 });
 
+// Agregar un evento change al select
+sortSelect.addEventListener('change', () => {
+  const sortOrder = sortSelect.value; // 'AZ - ZA'
+  const sortedFilms = sortByTitle(data.films, sortOrder);
+  
+  // Llamar a la función para mostrar las películas ordenadas en el DOM
+  renderMovies(sortedFilms, container);
+});
+
+// Función para mostrar el popup de la película
+const showMoviePopup = (movie) => {
+  const popContent = `
+      <h2>${movie.title}</h2>
+      <p>Release Date: ${movie.release_date}</p>
+      <p>Director:     ${movie.director}</p>
+      <p>Producer:     ${movie.producer}</p>
+      <p>Description:  ${movie.description}</p>
+      <img src="${movie.poster}" alt="${movie.title} Poster" />
+    `;
+
+  popUp.innerHTML = popContent;
+  
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("closeButton");
+  closeButton.textContent = "Close";
+  popUp.appendChild(closeButton);
+  
+  closeButton.addEventListener('click', () => {
+    popUp.close();
+  });
+  
+  popUp.showModal();
+};
+
+const filterAndShowMovies = (movies, filter) => {
+  const filteredMovies = movies.filter(movie => {
+    return movie.title.toLowerCase().includes(filter.toLowerCase());
+  });
+
+};
+  showMoviesInCards(filteredMovies);
+
+const showMoviesInCards = (movies) => {
+  container.innerHTML = '';
+  movies.forEach((movie, index) => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('box');
+    movieCard.dataset.movieIndex = index;
+    movieCard.innerHTML = createMovieHTML(movie);
+    movieCard.addEventListener('click', () => {
+      showMoviePopup(movie);
+    });
+    container.appendChild(movieCard);
+  });
+};
+
+showMoviesInCards(data.films);

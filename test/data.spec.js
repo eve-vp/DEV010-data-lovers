@@ -65,7 +65,7 @@ describe('sortByReleaseDate', () => {
   });
 
   it('should sort films by release date in descending order', () => {
-    const sortedFilms = sortByReleaseDate(films, 'desc');
+    const sortedFilms = sortByReleaseDate(data.films, 'desc');
     // Asegurarse de que las películas estén ordenadas correctamente
     expect(sortedFilms).toEqual([
       { title: 'Film 3', release_date: '2004-01-01' },
