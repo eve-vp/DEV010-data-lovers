@@ -86,7 +86,7 @@ sortSelect.addEventListener('change', () => {
 const showMoviePopup = (movie) => {
   const popContent = `
       <h2>${movie.title}</h2>
-      <p>Release Year: ${movie.releaseYear}</p>
+      <p>Release date: ${movie.release_date}</p>
       <p>Director: ${movie.director}</p>
       <p>Producer: ${movie.producer}</p>
       <p>Description: ${movie.description}</p>
