@@ -58,25 +58,31 @@ describe('sortByReleaseDate', () => {
     const sortedFilms = sortByReleaseDate(films, 'asc');
     // Asegurarse de que las películas estén ordenadas correctamente
     expect(sortedFilms).toEqual([
-      { title: 'Film 1', release_date: '1984-01-01' },
-      { title: 'Film 2', release_date: '1996-01-01' },
+      { title: 'Film 2', release_date: '1984-01-01' },
+      { title: 'Film 1', release_date: '1996-01-01' },
       { title: 'Film 3', release_date: '2004-01-01' },
     ]);
-  });
+  });  
+  //   expect(sortedFilms).toEqual([
+  //     { title: 'Film 1', release_date: '1984-01-01' },
+  //     { title: 'Film 3', release_date: '2004-01-01' },
+  //     { title: 'Film 2', release_date: '1996-01-01' },
+  //   ]);
+  // });
 
   it('should sort films by release date in descending order', () => {
     const sortedFilms = sortByReleaseDate(films, 'desc');
     // Asegurarse de que las películas estén ordenadas correctamente
     expect(sortedFilms).toEqual([
       { title: 'Film 3', release_date: '2004-01-01' },
-      { title: 'Film 1', release_date: '1984-01-01' },
-      { title: 'Film 2', release_date: '1996-01-01' },
+      { title: 'Film 1', release_date: '1996-01-01' },
+      { title: 'Film 2', release_date: '1984-01-01' },
     ]);
   });
 });
 
 // Test para el orden según
-//  A-Z o Z-A
+//  A-Z o Z-A // ALFABETICAMENTE, NO POR FECHA, REVISAR!
 
 describe('sortByTitle', () => {
   const films = [
