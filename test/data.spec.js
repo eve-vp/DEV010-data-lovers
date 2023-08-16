@@ -48,11 +48,11 @@ describe('filterMoviesByTitle', () => {
 // ascendente o descendente por año
 
 describe('sortByReleaseDate', () => {
-    const films = [
+  const films = [
     { title: 'Film 1', release_date: '1996-01-01' },
     { title: 'Film 2', release_date: '1984-01-01' },
     { title: 'Film 3', release_date: '2004-01-01' },
-];
+  ];
 
   it('should sort films by release date in ascending order', () => {
     const sortedFilms = sortByReleaseDate(films, 'asc');
@@ -65,7 +65,7 @@ describe('sortByReleaseDate', () => {
   });
 
   it('should sort films by release date in descending order', () => {
-    const sortedFilms = sortByReleaseDate(data.films, 'desc');
+    const sortedFilms = sortByReleaseDate(films, 'desc');
     // Asegurarse de que las películas estén ordenadas correctamente
     expect(sortedFilms).toEqual([
       { title: 'Film 3', release_date: '2004-01-01' },
@@ -105,6 +105,3 @@ describe('sortByTitle', () => {
     ]);
   });
 });
-
-
-

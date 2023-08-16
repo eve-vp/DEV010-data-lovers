@@ -2,35 +2,18 @@
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
-const statsContainer = document.querySelector(".stats-container");
 const containerCard = document.querySelector(".grid-container");
-const createMovieHTML = (movie, index) => {
+
+const createMovieHTML = (movie) => {
   const figure = document.createElement('figure');
   const img = document.createElement('img');
   img.src = movie.poster;
   img.alt = movie.title;
   img.id = 'data-movie-id';
-
   const figcaption = document.createElement('figcaption');
-  figcaption.textContent = movie.title; // Agregar el título
-
-  // Agregar el botón "Ver detalles"
-  const viewDetailsButton = document.createElement('button');
-  viewDetailsButton.textContent = 'View details';
-  viewDetailsButton.classList.add('view-details-button');
-
-  // Agregar evento click para mostrar el popup
-  viewDetailsButton.addEventListener('click', () => {
-    showMoviePopup(movie);
-  });
-
-  // Agregar título y botón al figcaption
-  figcaption.appendChild(viewDetailsButton);
-
-  // Agregar imagen y figcaption al figure
+  figcaption.textContent = movie.title;
   figure.appendChild(img);
   figure.appendChild(figcaption);
-
   return figure.outerHTML;
 };
 
@@ -104,7 +87,7 @@ sortSelect.addEventListener('change', () => {
 const showMoviePopup = (movie) => {
   const popContent = `
       <h2>${movie.title}</h2>
-      <p>Release date: ${movie.release_date}</p>
+      <p>Release Year: ${movie.releaseYear}</p>
       <p>Director: ${movie.director}</p>
       <p>Producer: ${movie.producer}</p>
       <p>Description: ${movie.description}</p>
@@ -115,7 +98,7 @@ const showMoviePopup = (movie) => {
   
   const closeButton = document.createElement("button");
   closeButton.classList.add("closeButton");
-  closeButton.textContent = "Close";
+  closeButton.textContent = "Cerrar";
   popUp.appendChild(closeButton);
   
   closeButton.addEventListener('click', () => {
@@ -132,156 +115,11 @@ const showMoviesInCards = (movies) => {
     movieCard.classList.add('box');
     movieCard.dataset.movieIndex = index;
     movieCard.innerHTML = createMovieHTML(movie);
-
     movieCard.addEventListener('click', () => {
-      showMoviePopup(movie);// Llama a la función con la película adecuada
+      showMoviePopup(movie);
     });
     container.appendChild(movieCard);
   });
 };
 
 showMoviesInCards(data.films);
-
-//ESTADÍSTICAS
-// Cuenta la cantidad de caracteres con género femenino o masculino.
-
-function computeStats(data) {
-  let num_female_characters = 0;
-  let num_male_characters = 0;
-  let num_nonhuman_species = 0;
-
-  data.films.forEach((film) => {
-    film.people.forEach((person) => {
-      if (person.gender === "Female") {
-        num_female_characters += 1;
-      } else if (person.gender === "Male") {
-        num_male_characters += 1;
-      }
-
-      if (person.species !== "Human") {
-        num_nonhuman_species += 1;
-      }
-
-    });
-  });
-
-  return {
-    num_female_characters: num_female_characters,
-    num_male_characters: num_male_characters,
-    num_nonhuman_species: num_nonhuman_species
-  };
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const showStatsButton = document.getElementById("showStatsButton");
-  
-  showStatsButton.addEventListener("click", () => {
-    if (statsContainer.style.display === "none" || !statsContainer.style.display) {
-      showStats();
-    } else {
-      hideStats();
-    }
-  });
-})
-
-function showStats() {
-  const stats = computeStats(data);
-  const statsHTML = `
-    <p>The number of female characters is: ${stats.num_female_characters}</p>
-    <p>The number of male characters is: ${stats.num_male_characters}</p>
-    <p>The number of non-human species is: ${stats.num_nonhuman_species}</p>
-  `;
-  statsContainer.innerHTML = statsHTML;
-  statsContainer.style.display = "block";
-}
-
-
-function hideStats() {
-  statsContainer.style.display = "none";
-}
-
-// Llamar a hideStats al inicio para que las estadísticas estén ocultas
-hideStats();
-
-// CHART.JS //
-
-/// Obtén una referencia al botón de mostrar gráfico
-const showChartButton = document.getElementById("showChartButton");
-
-// Obtén una referencia al contenedor del gráfico
-const chartContainer = document.querySelector(".chart-container");
-
-// Almacena una referencia al gráfico actual para poder destruirlo
-let characterStatsChart = null;
-
-// Agrega un evento click al botón de mostrar gráfico
-showChartButton.addEventListener("click", () => {
-  if (chartContainer.style.display === "none" || !chartContainer.style.display) {
-    // Mostrar el gráfico
-    chartContainer.style.display = "block";
-
-    // Destruye el gráfico existente si hay uno
-    if (characterStatsChart) {
-      characterStatsChart.destroy();
-    }
-
-    // Reemplaza estos valores con los datos adecuados de tu estadística
-    const labels = ['Female Characters', 'Male Characters', 'Non-Human Species'];
-    const dataPoints = [81, 87, 10]; // Valores de ejemplo, reemplázalos con tus valores
-
-    // Crear el gráfico
-    const ctx = document.getElementById('characterStatsChart').getContext('2d');
-
-    characterStatsChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Number of Characters',
-          data: dataPoints,
-          backgroundColor: ['rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-          borderColor: ['rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
-        plugins: {
-          datalabels: {
-            display: true,
-            color: 'black',
-            anchor: 'end',
-            align: 'top',
-            formatter: function(value, context) {
-              // Personaliza la etiqueta o el punto de datos aquí
-              if (context.dataIndex === 0) {
-                return 'Female: ' + value;
-              } else if (context.dataIndex === 1) {
-                return 'Male: ' + value;
-              } else {
-                return 'Non-Human Species: ' + value;
-              }
-            }
-          }
-        }
-      }
-    });
-  } else {
-    // Ocultar el gráfico
-    chartContainer.style.display = "none";
-  }
-});
-
-// Boton close
-const closeButton = document.getElementById("closeButton");
-
-closeButton.addEventListener("click", () => {
-  const statsContainer = document.querySelector(".stats-container");
-  const chartContainer = document.querySelector(".chart-container");
-  statsContainer.style.display = "none";
-  chartContainer.style.display = "none";
-});
