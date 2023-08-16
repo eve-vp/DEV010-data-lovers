@@ -207,8 +207,6 @@ figure figcaption {
 }
 
 #bodypopupDialog {
-  background-image: url('https://www.itl.cat/pngfile/big/106-1063141_doodles-ghibli-doodles-studio-ghibli-character-phone-backgrounds.png');
-  background-color: rgba(0, 0, 0, 0.6); /* Ajusta el valor alpha (0.6);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -265,12 +263,20 @@ figure figcaption {
     /* 0 es completamente transparente, 1 es completamente opaco */
   }
 
-  .footer {
-    display: none;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e8f4f5;
-    text-align: center;
-    font-size: 16px;
-  }
-  
+/* Estilos para la imagen de Totoro */
+.totoro-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 20px;
+  margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
+}
+
+/* Estilos para el texto del footer */
+.footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f4f5;
+  padding: 30 30px; /* Ajusta el padding según tus preferencias */
+}

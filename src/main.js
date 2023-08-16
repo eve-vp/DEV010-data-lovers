@@ -202,3 +202,4 @@ function hideStats() {
 
 // Llamar a hideStats al inicio para que las estadísticas estén ocultas
 hideStats();
+
