@@ -74,5 +74,3 @@ El proyecto se ha sometido a pruebas para asegurar su funcionamiento correcto:
 
 - Datos proporcionados por Studio Ghibli API.
 - Librería Chart.js utilizada para generar gráficos.
-
-
