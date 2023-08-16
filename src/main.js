@@ -3,17 +3,33 @@ import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
 const containerCard = document.querySelector(".grid-container");
-
-const createMovieHTML = (movie) => {
+const createMovieHTML = (movie, index) => {
   const figure = document.createElement('figure');
   const img = document.createElement('img');
   img.src = movie.poster;
   img.alt = movie.title;
   img.id = 'data-movie-id';
+
   const figcaption = document.createElement('figcaption');
-  figcaption.textContent = movie.title;
+  figcaption.textContent = movie.title; // Agregar el título
+
+  // Agregar el botón "Ver detalles"
+  const viewDetailsButton = document.createElement('button');
+  viewDetailsButton.textContent = 'View details';
+  viewDetailsButton.classList.add('view-details-button');
+
+  // Agregar evento click para mostrar el popup
+  viewDetailsButton.addEventListener('click', () => {
+    showMoviePopup(movie);
+  });
+
+  // Agregar título y botón al figcaption
+  figcaption.appendChild(viewDetailsButton);
+
+  // Agregar imagen y figcaption al figure
   figure.appendChild(img);
   figure.appendChild(figcaption);
+
   return figure.outerHTML;
 };
 
@@ -86,10 +102,10 @@ sortSelect.addEventListener('change', () => {
 const showMoviePopup = (movie) => {
   const popContent = `
       <h2>${movie.title}</h2>
-      <p>Release Date: ${movie.release_date}</p>
-      <p>Director:     ${movie.director}</p>
-      <p>Producer:     ${movie.producer}</p>
-      <p>Description:  ${movie.description}</p>
+      <p>Release date: ${movie.release_date}</p>
+      <p>Director: ${movie.director}</p>
+      <p>Producer: ${movie.producer}</p>
+      <p>Description: ${movie.description}</p>
       <img src="${movie.poster}" alt="${movie.title} Poster" />
     `;
 
@@ -106,14 +122,6 @@ const showMoviePopup = (movie) => {
   
   popUp.showModal();
 };
-
-const filterAndShowMovies = (movies, filter) => {
-  const filteredMovies = movies.filter(movie => {
-    return movie.title.toLowerCase().includes(filter.toLowerCase());
-  });
-
-};
-  showMoviesInCards(filteredMovies);
 
 const showMoviesInCards = (movies) => {
   container.innerHTML = '';

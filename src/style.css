@@ -146,14 +146,47 @@ figcaption {
   font-size: smaller;
   padding: 3px;
 }
+/* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
+.box:hover {
+  transform: scale(1.05); /* Aumenta el tamaño en un 5% */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+/* Estilo para el botón "Ver detalles" */
+.view-details-button {
+  background-color: #c4aec4;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px; /* Cambia los bordes para que solo la parte inferior tenga radio */
+  display: block;
+  width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
+  margin-top: 5px; /* Espacio entre el botón y el título */
+}
+
+
+/* Estilo para el título de la película */
+figure figcaption {
+  margin-bottom: 10px; /* Espacio entre el título y la imagen */
+}
 
 .box {
-  color: rgb(50, 32, 54);
+  color: rgb(168, 119, 168);
+}
+
+#bodypopupDialog {
+  background-image: url('https://www.itl.cat/pngfile/big/106-1063141_doodles-ghibli-doodles-studio-ghibli-character-phone-backgrounds.png');
+  background-color: rgba(0, 0, 0, 0.6); /* Ajusta el valor alpha (0.6);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Evita que la imagen se desplace al desplazarse */
 }
 
 #popupDialog {
   width: 500px;
-  height: 500px;
+  height: 700px;
 }
 
 #popupDialog h2 {
@@ -177,10 +210,10 @@ figcaption {
 .closeButton {
     border: 1px solid #e5e2d9;
     margin-top: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 16px;
     text-align: center;
-    background-color: #643975;
+    background-color: #2aa3a3;
     border-radius: 5px;
     padding: 5px 5px;
     display: inline-block;
