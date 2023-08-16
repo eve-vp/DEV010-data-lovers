@@ -142,7 +142,6 @@ nav #sort{
   justify-content: center;
   margin-top: 20px;
 }
-
   
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
@@ -191,6 +190,7 @@ figcaption {
   font-size: smaller;
   padding: 3px;
 }
+
 /* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
 .box:hover {
   transform: scale(1.05); /* Aumenta el tamaño en un 5% */
@@ -222,7 +222,6 @@ figcaption {
   width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
   margin-top: 5px; /* Espacio entre el botón y el título */
 }
-
 
 /* Estilo para el título de la película */
 figure figcaption {
@@ -299,6 +298,7 @@ figure figcaption {
   margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
 }
 /* Estilos para el texto del footer */
+
 .footer p {
   display: flex;
   align-items: center;

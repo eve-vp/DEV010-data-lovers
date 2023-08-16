@@ -1,4 +1,3 @@
-// Importa los datos
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
@@ -161,7 +160,6 @@ function computeStats(data) {
       if (person.species !== "Human") {
         num_nonhuman_species += 1;
       }
-
     });
   });
 
@@ -195,7 +193,6 @@ function showStats() {
   statsContainer.style.display = "block";
 }
 
-
 function hideStats() {
   statsContainer.style.display = "none";
 }
@@ -227,7 +224,7 @@ showChartButton.addEventListener("click", () => {
 
     // Reemplaza estos valores con los datos adecuados de tu estadística
     const labels = ['Female Characters', 'Male Characters', 'Non-Human Species'];
-    const dataPoints = [81, 87, 10]; // Valores de ejemplo, reemplázalos con tus valores
+    const dataPoints = [81, 87, 171]; // Valores de ejemplo, reemplázalos con tus valores
 
     // Crear el gráfico
     const ctx = document.getElementById('characterStatsChart').getContext('2d');

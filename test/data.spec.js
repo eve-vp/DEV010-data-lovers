@@ -2,14 +2,6 @@ import { filterMoviesByTitle } from '../src/data.js';
 import { sortByReleaseDate } from '../src/data.js';
 import { sortByTitle } from '../src/data.js';
 
-//import data from './data/ghibli/ghibli.js';
-
-
-// función filterMoviesByTitle:
-//     Si la función es una función.
-//     Si la función filtra correctamente las películas según el término de búsqueda.
-//     Si la función es insensible a mayúsculas y minúsculas en el término de búsqueda.
-
 describe('filterMoviesByTitle', () => {
   // Ejemplo de peliculas para la prueba
   const movies = [
@@ -63,12 +55,6 @@ describe('sortByReleaseDate', () => {
       { title: 'Film 3', release_date: '2004-01-01' },
     ]);
   });  
-  //   expect(sortedFilms).toEqual([
-  //     { title: 'Film 1', release_date: '1984-01-01' },
-  //     { title: 'Film 3', release_date: '2004-01-01' },
-  //     { title: 'Film 2', release_date: '1996-01-01' },
-  //   ]);
-  // });
 
   it('should sort films by release date in descending order', () => {
     const sortedFilms = sortByReleaseDate(films, 'desc');
