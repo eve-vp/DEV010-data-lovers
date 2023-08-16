@@ -95,10 +95,54 @@ nav #sort{
 }
 
 #noResultsMessage {
-  font-size: 18px;
-  padding: 50px 100px;
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
 }
 
+/* Estilos para las estadísticas */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinear al centro horizontal */
+  text-align: center; /* Alinear el contenido del contenedor al centro horizontal */
+}
+
+.stats-container {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.stats-container p {
+  margin: 2px 0; /* Espaciado entre los párrafos */
+  }
+
+.controls {
+  text-align: center;
+}
+
+/* Estilos para Chart.js */
+#characterStatsChart {
+  max-width: 300px; /* Ajusta el ancho máximo del gráfico */
+  margin: 20px auto;
+}
+.chart-container {
+  display: none;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+  
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
@@ -147,31 +191,84 @@ figcaption {
   padding: 3px;
 }
 
+/* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
+.box:hover {
+  transform: scale(1.05); /* Aumenta el tamaño en un 5% */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+/* Estilos para el contenedor de botones */
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Estilos para los botones */
+#showStatsButton,
+#showChartButton {
+  margin: 0 5px; /* Ajusta el margen entre los botones según tus preferencias */
+}
+
+/* Estilo para el botón "Ver detalles" */
+.view-details-button {
+  background-color: #c4aec4;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px; /* Cambia los bordes para que solo la parte inferior tenga radio */
+  display: block;
+  width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
+  margin-top: 5px; /* Espacio entre el botón y el título */
+}
+
+/* Estilo para el título de la película */
+figure figcaption {
+  margin-bottom: 10px; /* Espacio entre el título y la imagen */
+}
+
 .box {
-  color: black;
+  color: rgb(168, 119, 168);
+}
+
+#bodypopupDialog {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Evita que la imagen se desplace al desplazarse */
 }
 
 #popupDialog {
   width: 500px;
-  height: 500px;
+  height: 700px;
 }
 
 #popupDialog h2 {
   font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #632b91;
+  text-align: center;
 }
 
 #popupDialog p {
   font-size: 15px;
+  text-align: justify;
+}
+
+#popup-image img {
+  max-width: 20%;
+  height: auto;
 }
   
 .closeButton {
     border: 1px solid #e5e2d9;
     margin-top: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: white;
-    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
     text-align: center;
-    background-color: #d63f31;
+    background-color: #2aa3a3;
     border-radius: 5px;
     padding: 5px 5px;
     display: inline-block;
@@ -180,15 +277,32 @@ figcaption {
     height: 35px;
   }
 
-  .closeButton:hover {
+.closeButton:hover {
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
     opacity: 0.8;
-    background-color: #f50000;  
+    background-color: #392549;  
   }
 
-  .modal-open {
+.modal-open {
     opacity: 0.5;
     /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
     /* 0 es completamente transparente, 1 es completamente opaco */
   }
 
+/* Estilos para la imagen de Totoro */
+.totoro-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 20px;
+  margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
+}
+/* Estilos para el texto del footer */
+
+.footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f4f5;
+  padding: 30px 30px; /* Ajusta el padding según tus preferencias */
+}
