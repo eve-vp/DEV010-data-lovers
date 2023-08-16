@@ -47,3 +47,4 @@ export const sortByTitle = (films, sortOrder) => {
     return films.slice().sort((a, b) => b.title.localeCompare(a.title));
   }
 };
+

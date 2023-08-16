@@ -44,31 +44,36 @@
           <option value="asc">Date, new to old</option>
         </select>
       </div>
-    </nav>
+
+      </nav>
 
     <p id="noResultsMessage" style="display: none">No results found...</p>
 
     <main>
+        <div class="controls">
+        <button id="showStatsButton">Show Statistics</button>
+      </div>
+
+      <div class="stats-container"></div>
+
       <div class="grid-container">
         <div class="movie-grid">
           <div class="box" data-movie-index="0"></div>
         </div>
       </div>
-
+      
     </main>
 
-    <footer>
-      <p><center>Developer Rocío Lorca and Evelyn VPírez</center></p>
-      <p><center>Copyright 2023© #20</center></p>
+    <footer class="footer">
+      <p style="text-align: center;">Developer Rocío Lorca and Evelyn V. Pírez</p>
+      <p style="text-align: center;">Copyright 2023© #20</p>
     </footer>
 
     <div id="root"></div>
-     
     <script src="main.js" type="module"></script>
-     
+  
   </body>
 
 </html> 
 
 
-   

@@ -2,6 +2,7 @@
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
+const statsContainer = document.querySelector(".stats-container");
 const containerCard = document.querySelector(".grid-container");
 const createMovieHTML = (movie, index) => {
   const figure = document.createElement('figure');
@@ -36,7 +37,8 @@ const createMovieHTML = (movie, index) => {
 // Función para mostrar las películas que coinciden con el término de búsqueda
 function showMatchingFilms(movies, searchTerm, container) {
   const matchingFilms = filterMoviesByTitle(movies, searchTerm);
-  renderMovies(matchingFilms, container);
+  // renderMovies(matchingFilms, container);
+  showMoviesInCards(matchingFilms); // Generar elementos con controladores de eventos
 }
 
 const popUp = document.createElement('dialog');
@@ -130,11 +132,73 @@ const showMoviesInCards = (movies) => {
     movieCard.classList.add('box');
     movieCard.dataset.movieIndex = index;
     movieCard.innerHTML = createMovieHTML(movie);
+
     movieCard.addEventListener('click', () => {
-      showMoviePopup(movie);
+      showMoviePopup(movie);// Llama a la función con la película adecuada
     });
     container.appendChild(movieCard);
   });
 };
 
 showMoviesInCards(data.films);
+
+//ESTADÍSTICAS
+// Cuenta la cantidad de caracteres con género femenino o masculino.
+
+function computeStats(data) {
+  let num_female_characters = 0;
+  let num_male_characters = 0;
+  let num_nonhuman_species = 0;
+
+  data.films.forEach((film) => {
+    film.people.forEach((person) => {
+      if (person.gender === "Female") {
+        num_female_characters += 1;
+      } else if (person.gender === "Male") {
+        num_male_characters += 1;
+      }
+
+      if (person.species !== "Human") {
+        num_nonhuman_species += 1;
+      }
+
+    });
+  });
+
+  return {
+    num_female_characters: num_female_characters,
+    num_male_characters: num_male_characters,
+    num_nonhuman_species: num_nonhuman_species
+  };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const showStatsButton = document.getElementById("showStatsButton");
+  
+  showStatsButton.addEventListener("click", () => {
+    if (statsContainer.style.display === "none" || !statsContainer.style.display) {
+      showStats();
+    } else {
+      hideStats();
+    }
+  });
+})
+
+function showStats() {
+  const stats = computeStats(data);
+  const statsHTML = `
+    <p>The number of female characters is: ${stats.num_female_characters}</p>
+    <p>The number of male characters is: ${stats.num_male_characters}</p>
+    <p>The number of non-human species is: ${stats.num_nonhuman_species}</p>
+  `;
+  statsContainer.innerHTML = statsHTML;
+  statsContainer.style.display = "block";
+}
+
+
+function hideStats() {
+  statsContainer.style.display = "none";
+}
+
+// Llamar a hideStats al inicio para que las estadísticas estén ocultas
+hideStats();

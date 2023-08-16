@@ -99,6 +99,33 @@ nav #sort{
   padding: 50px 100px;
 }
 
+/* Estilos para las estadísticas */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinear al centro horizontal */
+  text-align: center; /* Alinear el contenido del contenedor al centro horizontal */
+}
+
+.stats-container {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.stats-container p {
+  margin: 2px 0; /* Espaciado entre los párrafos */
+  }
+
+.controls {
+  text-align: center;
+}
+  
+
+
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
@@ -222,15 +249,23 @@ figure figcaption {
     height: 35px;
   }
 
-  .closeButton:hover {
+.closeButton:hover {
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
     opacity: 0.8;
     background-color: #392549;  
   }
 
-  .modal-open {
+.modal-open {
     opacity: 0.5;
     /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
     /* 0 es completamente transparente, 1 es completamente opaco */
   }
 
+.footer {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center;
+  font-size: 16px;
+}
