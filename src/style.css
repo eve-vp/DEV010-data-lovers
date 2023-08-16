@@ -94,11 +94,56 @@ nav #sort{
   flex-grow: 1;
 }
 
-p {
-  font-size: 18px;
-  padding: 50px 100px;
+#noResultsMessage {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
 }
 
+/* Estilos para las estadísticas */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinear al centro horizontal */
+  text-align: center; /* Alinear el contenido del contenedor al centro horizontal */
+}
+
+.stats-container {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.stats-container p {
+  margin: 2px 0; /* Espaciado entre los párrafos */
+  }
+
+.controls {
+  text-align: center;
+}
+
+/* Estilos para Chart.js */
+#characterStatsChart {
+  max-width: 300px; /* Ajusta el ancho máximo del gráfico */
+  margin: 20px auto;
+}
+.chart-container {
+  display: none;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+  
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
@@ -134,7 +179,7 @@ figure {
 
 img {
   width: 100%;
-  /* height: 260px; Aumentar la altura de las imágenes */
+  height: 260px;
   border-radius: 5px 5px 5px 5px;
   object-fit: cover;
 }
@@ -146,88 +191,120 @@ figcaption {
   font-size: smaller;
   padding: 3px;
 }
-
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 80%;
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
+/* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
+.box:hover {
+  transform: scale(1.05); /* Aumenta el tamaño en un 5% */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
 }
 
-.popup-content {
-  max-height: 80vh;
-  overflow-y: auto;
+/* Estilos para el contenedor de botones */
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-#closePopup {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+/* Estilos para los botones */
+#showStatsButton,
+#showChartButton {
+  margin: 0 5px; /* Ajusta el margen entre los botones según tus preferencias */
 }
 
-/*///////////////////////////////// REVISAR 12-08
-/* Estilo para ocultar el contenedor del popup
-.hidden {
-  display: none;
+/* Estilo para el botón "Ver detalles" */
+.view-details-button {
+  background-color: #c4aec4;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px; /* Cambia los bordes para que solo la parte inferior tenga radio */
+  display: block;
+  width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
+  margin-top: 5px; /* Espacio entre el botón y el título */
 }
 
-/* Estilo para el contenedor del popup */
-/* #popupContainer {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 2px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-} */ 
 
+/* Estilo para el título de la película */
+figure figcaption {
+  margin-bottom: 10px; /* Espacio entre el título y la imagen */
+}
 
-/*PRUEBAS DE POPUP*/
-@media(max-width:1100px) {
-  #popupDialog {
-      border: 2px solid #575344;
-      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 15px;
-      background-color: #FFFFF9;
-      text-align: center;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      font-size: 40px;
-      color: #575344;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;  
+.box {
+  color: rgb(168, 119, 168);
+}
+
+#bodypopupDialog {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Evita que la imagen se desplace al desplazarse */
+}
+
+#popupDialog {
+  width: 500px;
+  height: 700px;
+}
+
+#popupDialog h2 {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #632b91;
+  text-align: center;
+}
+
+#popupDialog p {
+  font-size: 15px;
+  text-align: justify;
+}
+
+#popup-image img {
+  max-width: 20%;
+  height: auto;
+}
+  
+.closeButton {
+    border: 1px solid #e5e2d9;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    text-align: center;
+    background-color: #2aa3a3;
+    border-radius: 5px;
+    padding: 5px 5px;
+    display: inline-block;
+    cursor: pointer;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 35px;
   }
-}
 
-@media(min-width:1100px) {
-  #popupDialog {
-      border: 2px solid #575344;
-      box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 15px;
-      background-color: #FFFFF9;
-      width: 600px;
-      height: 600px;
-      text-align:center;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      font-size: 18px;
-      color: #575344;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;  
+.closeButton:hover {
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+    background-color: #392549;  
   }
-}
 
-#popupDialog::-webkit-scrollbar {
-  width: 12px;              
+.modal-open {
+    opacity: 0.5;
+    /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
+    /* 0 es completamente transparente, 1 es completamente opaco */
+  }
+
+/* Estilos para la imagen de Totoro */
+.totoro-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 20px;
+  margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
+}
+/* Estilos para el texto del footer */
+.footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f4f5;
+  padding: 30px 30px; /* Ajusta el padding según tus preferencias */
 }
 
 #popupDialog::-webkit-scrollbar-track {

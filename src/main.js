@@ -2,51 +2,61 @@
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
-// Función para crear el HTML de una película
-function createMovieHTML(movie) {
-  return `
-    <figure>
-      <img src="${movie.poster}" id="data-movie-id" alt="${movie.title}" />
-      <figcaption>${movie.title}</figcaption>
-    </figure>
-  `;
-}
+const statsContainer = document.querySelector(".stats-container");
+const containerCard = document.querySelector(".grid-container");
+const createMovieHTML = (movie, index) => {
+  const figure = document.createElement('figure');
+  const img = document.createElement('img');
+  img.src = movie.poster;
+  img.alt = movie.title;
+  img.id = 'data-movie-id';
+
+  const figcaption = document.createElement('figcaption');
+  figcaption.textContent = movie.title; // Agregar el título
+
+  // Agregar el botón "Ver detalles"
+  const viewDetailsButton = document.createElement('button');
+  viewDetailsButton.textContent = 'View details';
+  viewDetailsButton.classList.add('view-details-button');
+
+  // Agregar evento click para mostrar el popup
+  viewDetailsButton.addEventListener('click', () => {
+    showMoviePopup(movie);
+  });
+
+  // Agregar título y botón al figcaption
+  figcaption.appendChild(viewDetailsButton);
+
+  // Agregar imagen y figcaption al figure
+  figure.appendChild(img);
+  figure.appendChild(figcaption);
+
+  return figure.outerHTML;
+};
 
 // Función para mostrar las películas que coinciden con el término de búsqueda
 function showMatchingFilms(movies, searchTerm, container) {
   const matchingFilms = filterMoviesByTitle(movies, searchTerm);
-  renderMovies(matchingFilms, container);
+  // renderMovies(matchingFilms, container);
+  showMoviesInCards(matchingFilms); // Generar elementos con controladores de eventos
 }
 
-/************ REVISAR MODIFICACION 12-08***************/
-// Función para renderizar las películas en el contenedor
-// function renderMovies(movies, container) {
-//   // MODIFCACIóN 12-08
-//   if (Array.isArray(movies) && movies.length > 0) {
-//   const moviesHTML = movies.map(createMovieHTML).join('');
-//     // MODIFCACIóN 12-08
-//   } else {
-//   // Manejar el caso en el que "movies" no está definido o es una matriz vacía
-//   container.innerHTML = moviesHTML;
-// }
-// }
-/************ REVISAR MODIFICACION 12-08***************/
+const popUp = document.createElement('dialog');
+document.body.appendChild(popUp);
+popUp.setAttribute('id', 'popupDialog');
+containerCard.appendChild(popUp);
 
-///////////////////////////////////
-// Función para renderizar las películas en el contenedor
 function renderMovies(movies, container) {
   const moviesHTML = movies.map(createMovieHTML).join('');
   container.innerHTML = moviesHTML;
-  ///////////////////////////////////////
 
-  // Asegurarse de que todas las imágenes tengan el mismo tamaño
   const movieImages = container.querySelectorAll('img');
   movieImages.forEach(image => {
-    image.style.height = '260px'; // Establecer la misma altura para todas las imágenes
+    image.style.height = '260px';
   });
 }
 
-// Obtén los elementos del campo de entrada y el botón de búsqueda
+// Obtén los elementos del campo de entrada y el contenedor
 const searchInput = document.querySelector('#searchInput');
 const container = document.querySelector('.movie-grid');
 const noResultsMessage = document.querySelector('#noResultsMessage');
@@ -90,132 +100,188 @@ sortSelect.addEventListener('change', () => {
   renderMovies(sortedFilms, container);
 });
 
-//*************************************/
-//Obtén el elemento del popup y los elementos para mostrar la información
-// const popup = document.getElementById('popup');
-// const popupTitle = document.getElementById('popupTitle');
-// const popupDescription = document.getElementById('popupDescription');
-// const closePopupButton = document.getElementById('closePopup');
-//****************COPIADO MAS ABAJO PARA PRUEBA */
+// Función para mostrar el popup de la película
+const showMoviePopup = (movie) => {
+  const popContent = `
+      <h2>${movie.title}</h2>
+      <p>Release date: ${movie.release_date}</p>
+      <p>Director: ${movie.director}</p>
+      <p>Producer: ${movie.producer}</p>
+      <p>Description: ${movie.description}</p>
+      <img src="${movie.poster}" alt="${movie.title} Poster" />
+    `;
 
-//Agrega un evento click a las imágenes de las películas
-container.addEventListener('click', (event) => {
-  const movieImage = event.target.closest('img');
-  if (movieImage) {
-    const movieId = movieImage.dataset.movieId; // Asegúrate de tener un atributo 'data-movie-id' en la imagen
-    const selectedMovie = data.films.find(movie => movie.id === movieId);
-    
-    if (selectedMovie) {
-      popupTitle.textContent = selectedMovie.title;
-      popupDescription.textContent = selectedMovie.description;
-      //Actualiza más detalles del popup con la información de la película
-      popup.style.display = 'block';
-    }
-  }
-});
-
-//Agrega un evento click para cerrar el popup
-closePopupButton.addEventListener('click', () => {
-  popup.style.display = 'none';
-});
-
-// Agrega un evento click a las imágenes para abrir el popup
-container.addEventListener('click', event => {
-  const clickedImage = event.target;
-  const movieId = clickedImage.getAttribute('data-movie-id');
-  if (movieId) {
-    openPopup(movieId);
-  }
-});
-
-
-
-//Obtén el elemento del popup y los elementos para mostrar la información
-// const popup = document.getElementById('popup');
-// const popupTitle = document.getElementById('popupTitle');
-// const popupDescription = document.getElementById('popupDescription');
-// const closePopupButton = document.getElementById('closePopup');
-
-/////**********************************/
-// FUNCIÓN para crear el contenido HTML del popup FUNCIONA?
-
-///////////////////////////////////// REVISAR 12-08
-// Esperar a que se cargue completamente el DOM antes de acceder a los elementos
-// document.addEventListener("DOMContentLoaded", () => {
-
-// // Obtener referencias a los botones y al contenedor del popup
-// const openPopupButton = document.getElementById("openPopupButton");
-// const closePopupButton = document.getElementById("closePopupButton");
-// const popupContainer = document.getElementById("popupContainer");
-
-
-// // Evento al hacer clic en el botón "Open Movie Info"
-// openPopupButton.addEventListener("click", () => {
-//   // Cargar los datos de la película y mostrar el popup
-//   loadMovieData((movieData) => {
-//     const popupContent = createPopupHTML(movieData);
-//     showPopup(popupContent);
-//   });
-// });
-
-// function createPopupHTML(movie) {
-//   return `
-//     <div class="popup-content">
-//       <h2>${movie.title}</h2>
-//       <p>Release Year: ${movie.releaseYear}</p>
-//       <p>Director: ${movie.director}</p>
-//       <p>Producer: ${movie.producer}</p>
-//       <p>Description: ${movie.description}</p>
-//       <p>People: ${movie.people}</p>
-//       <img src="${movie.posterURL}" alt="${movie.title} Poster" />
-//     </div>
-//   `;
-// }
-
-// // Función para mostrar el popup
-// function showPopup(content) {
-//   // Mostrar el contenido del popup en el contenedor
-//   popupContainer.innerHTML = content;
-//   // Mostrar el contenedor del popup
-//   popupContainer.classList.remove("hidden");
-// }
-
-// // Función para ocultar el popup
-// function hidePopup() {
-//   // Ocultar el contenedor del popup
-//   popupContainer.classList.add("hidden");
-//   // Limpiar el contenido del popup
-//   popupContainer.innerHTML = "";
-// };
-
-// // Evento al hacer clic en el botón "Close Movie Info"
-// closePopupButton.addEventListener("click", () => {
-//   // Ocultar el popup
-//   hidePopup();
-// });
-
-// // Función para cargar los datos de una película (simulación)
-// function loadMovieData(callback) {
+  popUp.innerHTML = popContent;
   
-//   // Se supongane que obtenemos los datos de la película de alguna manera
-//   const movieData = {
-//     title: "My Neighbor Totoro",
-//     releaseYear: "1988",
-//     director: "Hayao Miyazaki",
-//     producer: "Hayao Miyazaki",
-//     description: "Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the older sister seeks help from the spirits to find her.",
-//     people: "name 1, name 2",
-//     posterURL: "${movie.posterURL}",
-//   };
+  const closeButton = document.createElement("button");
+  closeButton.classList.add("closeButton");
+  closeButton.textContent = "Close";
+  popUp.appendChild(closeButton);
+  
+  closeButton.addEventListener('click', () => {
+    popUp.close();
+  });
+  
+  popUp.showModal();
+};
 
-//   // Llamar al callback con los datos de la película
-//   callback(movieData);
-// }
+const showMoviesInCards = (movies) => {
+  container.innerHTML = '';
+  movies.forEach((movie, index) => {
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('box');
+    movieCard.dataset.movieIndex = index;
+    movieCard.innerHTML = createMovieHTML(movie);
+
+    movieCard.addEventListener('click', () => {
+      showMoviePopup(movie);// Llama a la función con la película adecuada
+    });
+    container.appendChild(movieCard);
+  });
+};
+
+showMoviesInCards(data.films);
+
+//ESTADÍSTICAS
+// Cuenta la cantidad de caracteres con género femenino o masculino.
+
+function computeStats(data) {
+  let num_female_characters = 0;
+  let num_male_characters = 0;
+  let num_nonhuman_species = 0;
+
+  data.films.forEach((film) => {
+    film.people.forEach((person) => {
+      if (person.gender === "Female") {
+        num_female_characters += 1;
+      } else if (person.gender === "Male") {
+        num_male_characters += 1;
+      }
+
+      if (person.species !== "Human") {
+        num_nonhuman_species += 1;
+      }
+
+    });
+  });
+
+  return {
+    num_female_characters: num_female_characters,
+    num_male_characters: num_male_characters,
+    num_nonhuman_species: num_nonhuman_species
+  };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const showStatsButton = document.getElementById("showStatsButton");
+  
+  showStatsButton.addEventListener("click", () => {
+    if (statsContainer.style.display === "none" || !statsContainer.style.display) {
+      showStats();
+    } else {
+      hideStats();
+    }
+  });
+})
+
+function showStats() {
+  const stats = computeStats(data);
+  const statsHTML = `
+    <p>The number of female characters is: ${stats.num_female_characters}</p>
+    <p>The number of male characters is: ${stats.num_male_characters}</p>
+    <p>The number of non-human species is: ${stats.num_nonhuman_species}</p>
+  `;
+  statsContainer.innerHTML = statsHTML;
+  statsContainer.style.display = "block";
+}
 
 
-/// MOSTRAR DATA DE CADA PELÍCULA AL HACER CLICK
+function hideStats() {
+  statsContainer.style.display = "none";
+}
 
-// Función para valores, necesitamos??
+// Llamar a hideStats al inicio para que las estadísticas estén ocultas
+hideStats();
 
-// Función para mostrar la tarjeta con info completa al hacer click
-const showCards = (films)
+// CHART.JS //
+
+/// Obtén una referencia al botón de mostrar gráfico
+const showChartButton = document.getElementById("showChartButton");
+
+// Obtén una referencia al contenedor del gráfico
+const chartContainer = document.querySelector(".chart-container");
+
+// Almacena una referencia al gráfico actual para poder destruirlo
+let characterStatsChart = null;
+
+// Agrega un evento click al botón de mostrar gráfico
+showChartButton.addEventListener("click", () => {
+  if (chartContainer.style.display === "none" || !chartContainer.style.display) {
+    // Mostrar el gráfico
+    chartContainer.style.display = "block";
+
+    // Destruye el gráfico existente si hay uno
+    if (characterStatsChart) {
+      characterStatsChart.destroy();
+    }
+
+    // Reemplaza estos valores con los datos adecuados de tu estadística
+    const labels = ['Female Characters', 'Male Characters', 'Non-Human Species'];
+    const dataPoints = [81, 87, 10]; // Valores de ejemplo, reemplázalos con tus valores
+
+    // Crear el gráfico
+    const ctx = document.getElementById('characterStatsChart').getContext('2d');
+
+    characterStatsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Number of Characters',
+          data: dataPoints,
+          backgroundColor: ['rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+          borderColor: ['rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          datalabels: {
+            display: true,
+            color: 'black',
+            anchor: 'end',
+            align: 'top',
+            formatter: function(value, context) {
+              // Personaliza la etiqueta o el punto de datos aquí
+              if (context.dataIndex === 0) {
+                return 'Female: ' + value;
+              } else if (context.dataIndex === 1) {
+                return 'Male: ' + value;
+              } else {
+                return 'Non-Human Species: ' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+  } else {
+    // Ocultar el gráfico
+    chartContainer.style.display = "none";
+  }
+});
+
+// Boton close
+const closeButton = document.getElementById("closeButton");
+
+closeButton.addEventListener("click", () => {
+  const statsContainer = document.querySelector(".stats-container");
+  const chartContainer = document.querySelector(".chart-container");
+  statsContainer.style.display = "none";
+  chartContainer.style.display = "none";
+});

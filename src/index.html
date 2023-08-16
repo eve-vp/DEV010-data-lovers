@@ -1,102 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" style="--header-height: 0px">
-  <head>
-    <meta charset="utf-8" />
-    <!-- <meta name="viewport" content="width=device-width,initial-scale=1" /> -->
-    <!-- Con esta modificación, la página debería adaptarse correctamente a dispositivos móviles y tabletas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="" />
-    <title>Studio Ghibli</title>
-    <!-- para agregar favicon https://codigonaranja.com/curso-html-como-agregar-un-favicon-icono -->
-    <link
-      rel="shortcut icon"
-      href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg"/>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/b0634a348a.js" crossorigin="anonymous"></script>
-    <!--<style>.nav-title-mobile {display: none;}.list-menu--disclosure{display: none;position: absolute;min-width: 100%;width: 22rem;background-color: var(--bg-white);box-shadow: 0 1px 4px 0 rgb(0 0 0 / 15%);padding: 5px 0 5px 20px;opacity: 0;visibility: visible;pointer-events: none;transition:</style>
-    -----Este estilo oculta el título de navegación en la versión móvil del sitio web.-->
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="" />
+  <title>Studio Ghibli</title>
+  <link rel="shortcut icon" href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/37785617165363.562d61306b0aa.jpg" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/b0634a348a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://cdn.shopify.com/s/files/1/0618/8715/2293/files/Studio_Ghibli_logo_c282b0e9-3541-4c76-8b79-84904436459d.png?v=1676054213" alt="Logo Studio Ghibli" />
+    </div>
+  </header>
 
-  <body>
-    <header>
-      <div class="logo">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0618/8715/2293/files/Studio_Ghibli_logo_c282b0e9-3541-4c76-8b79-84904436459d.png?v=1676054213"
-          alt="Logo Studio Ghibli"/>
-      </div>
-    </header>
+  <nav>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search..." class="src" autocomplete="off">
+      <i class="fa-solid fa-magnifying-glass icon"></i>
+    </div>
+    <div class="filters">
+      <label for="sort">Sort by:</label>
+      <select id="sort">
+        <option value="AZ">Alphabetically, A-Z</option>
+        <option value="ZA">Alphabetically, Z-A</option>
+        <option value="desc">Date, old to new</option>
+        <option value="asc">Date, new to old</option>
+      </select>
+    </div>
+  </nav>
 
-    <!-- Barra de navegación con búsqueda y filtros -->
-    <nav>
-      <!-- Campo de entrada y botón de búsqueda -->
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search..." class="src" autocomplete="off" >
-        <i class="fa-solid fa-magnifying-glass icon"></i>
-        <!-- <button id="refreshButton">Refresh</button> -->
-      </div>
+  <p id="noResultsMessage" style="display: none">No results found...</p>
 
-      <div class="filters">
-        <label for="sort">Sort by:</label>
-        <select id="sort">
-          <option value="AZ">Alphabetically, A-Z</option>
-          <option value="ZA">Alphabetically, Z-A</option>
-          <option value="desc">Date, old to new</option>
-          <option value="asc">Date, new to old</option>
-        </select>
-      </div>
-    </nav>
-
-    <p id="noResultsMessage" style="display: none">No results found...</p>
-
-    <main>
-      <div class="grid-container">
-        <div class="movie-grid">
-          <!-- <button id="openPopupButton">Open Movie Info</button> <button id="openPopupButton">Open Movie Info</button>
-          <div id="popupContainer" class="hidden">
-          <button id="closePopupButton">Close Movie Info</button>
-          
-            <h2 src=${movie.title}></h2>
-            <p>Release Year: ${movie.releaseYear}</p>
-            <p>Director: ${movie.director}</p>
-            <p>Producer: ${movie.producer}</p>
-            <p>Description: ${movie.description}</p>
-            <p>People: ${movie.people}</p>
-            <img src="${movie.posterURL}" alt="${movie.title} Poster" />
-          </div> -->
-        </div>
-      </div>
- 
-      <!-- <section id="personaje">
-        <h2>Personajes</h2>
-        <div class="contenedor-card"></div>
-      </section> -->
-
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <button id="closePopup">Close</button>
-          <h2 id="popupTitle"></h2>
-          <p id="popupDescription"></p>
-          <button id="openPopupButton">Open Movie Info</button> 
-        </div>
-        <div id="popupContainer" class="hidden">
-          <button id="closePopupButton">Close Movie Info</button>
-        </div>
+  <main>
+    <div class="controls">
+      <div class="controls">
+        <button id="showStatsButton">Show Statistics</button>
+        <button id="showChartButton">Character Stats Chart</button>
       </div>
 
-    </main>
+<div class="stats-container"></div>
+<div class="chart-container">
+  <canvas id="characterStatsChart"></canvas>
+</div>
 
-    <footer>
-      <p><center>Developer Rocío Lorca and Evelyn VPírez</center></p>
-      <p><center>Copyright 2023© #20</center></p>
-    </footer>
-
-    <div id="root"></div>
-     
-    <script src="main.js" type="module"></script>
-     
-  </body>
-
-</html> 
+<div class="center-container">
+  <button id="closeButton">Close</button>
+</div>
 
 
-   
+    <div class="grid-container">
+      <div class="movie-grid">
+        <div class="box" data-movie-index="0"></div>
+      </div>
+    </div>
+
+    
+  </main>
+
+      <footer>
+        <p><center>Developer Rocío Lorca and Evelyn VPírez</center></p>
+        <p><center>Copyright 2023© #20</center></p>
+      </footer>
+
+  <div id="root"></div>
+  <script src="main.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
