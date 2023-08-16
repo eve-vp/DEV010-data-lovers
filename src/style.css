@@ -95,8 +95,12 @@ nav #sort{
 }
 
 #noResultsMessage {
-  font-size: 18px;
-  padding: 50px 100px;
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
 }
 
 /* Estilos para las estadísticas */
@@ -261,11 +265,12 @@ figure figcaption {
     /* 0 es completamente transparente, 1 es completamente opaco */
   }
 
-.footer {
-  display: none;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #e8f4f5;
-  text-align: center;
-  font-size: 16px;
-}
+  .footer {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8f4f5;
+    text-align: center;
+    font-size: 16px;
+  }
+  
