@@ -127,9 +127,23 @@ nav #sort{
 .controls {
   text-align: center;
 }
+
+/* Estilos para Chart.js */
+#characterStatsChart {
+  max-width: 300px; /* Ajusta el ancho máximo del gráfico */
+  margin: 20px auto;
+}
+.chart-container {
+  display: none;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
   
-
-
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
@@ -181,6 +195,19 @@ figcaption {
 .box:hover {
   transform: scale(1.05); /* Aumenta el tamaño en un 5% */
   transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+/* Estilos para el contenedor de botones */
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Estilos para los botones */
+#showStatsButton,
+#showChartButton {
+  margin: 0 5px; /* Ajusta el margen entre los botones según tus preferencias */
 }
 
 /* Estilo para el botón "Ver detalles" */
@@ -271,12 +298,11 @@ figure figcaption {
   height: 20px;
   margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
 }
-
 /* Estilos para el texto del footer */
 .footer p {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #e8f4f5;
-  padding: 30 30px; /* Ajusta el padding según tus preferencias */
+  padding: 30px 30px; /* Ajusta el padding según tus preferencias */
 }

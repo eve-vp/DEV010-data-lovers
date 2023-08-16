@@ -203,3 +203,85 @@ function hideStats() {
 // Llamar a hideStats al inicio para que las estadísticas estén ocultas
 hideStats();
 
+// CHART.JS //
+
+/// Obtén una referencia al botón de mostrar gráfico
+const showChartButton = document.getElementById("showChartButton");
+
+// Obtén una referencia al contenedor del gráfico
+const chartContainer = document.querySelector(".chart-container");
+
+// Almacena una referencia al gráfico actual para poder destruirlo
+let characterStatsChart = null;
+
+// Agrega un evento click al botón de mostrar gráfico
+showChartButton.addEventListener("click", () => {
+  if (chartContainer.style.display === "none" || !chartContainer.style.display) {
+    // Mostrar el gráfico
+    chartContainer.style.display = "block";
+
+    // Destruye el gráfico existente si hay uno
+    if (characterStatsChart) {
+      characterStatsChart.destroy();
+    }
+
+    // Reemplaza estos valores con los datos adecuados de tu estadística
+    const labels = ['Female Characters', 'Male Characters', 'Non-Human Species'];
+    const dataPoints = [81, 87, 10]; // Valores de ejemplo, reemplázalos con tus valores
+
+    // Crear el gráfico
+    const ctx = document.getElementById('characterStatsChart').getContext('2d');
+
+    characterStatsChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Number of Characters',
+          data: dataPoints,
+          backgroundColor: ['rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+          borderColor: ['rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          datalabels: {
+            display: true,
+            color: 'black',
+            anchor: 'end',
+            align: 'top',
+            formatter: function(value, context) {
+              // Personaliza la etiqueta o el punto de datos aquí
+              if (context.dataIndex === 0) {
+                return 'Female: ' + value;
+              } else if (context.dataIndex === 1) {
+                return 'Male: ' + value;
+              } else {
+                return 'Non-Human Species: ' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+  } else {
+    // Ocultar el gráfico
+    chartContainer.style.display = "none";
+  }
+});
+
+// Boton close
+const closeButton = document.getElementById("closeButton");
+
+closeButton.addEventListener("click", () => {
+  const statsContainer = document.querySelector(".stats-container");
+  const chartContainer = document.querySelector(".chart-container");
+  statsContainer.style.display = "none";
+  chartContainer.style.display = "none";
+});
