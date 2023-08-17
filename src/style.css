@@ -108,11 +108,6 @@ nav #sort{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-main {
-  margin: 0;
-  padding: 0;
-}
-
 /* Estilos para las estadísticas */
 .container {
   display: flex;
@@ -156,8 +151,8 @@ main {
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
-  margin: 20px;
-  padding: 0px; /* Añadir un espaciado adicional en los lados para centrar */
+  margin: auto;
+  padding: 0px 20px; /* Añadir un espaciado adicional en los lados para centrar */
 }
 
 .movie-grid {
@@ -166,7 +161,7 @@ main {
   gap: 10px; /* Espacio entre las filas */
   grid-gap: 20px; /* Espacio entre las columnas */
   max-width: 960px;
-  margin: 0px;
+  margin: 20px auto auto -35px;
   justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
 }
 
@@ -180,7 +175,7 @@ main {
 figure {
   border: 2px solid #d5c7fe;
   border-radius: 15px; /* generador de radio en bordes https://html-css-js.com/css/generator/border-radius/ */
-  padding: 5px;
+  padding: 10px;
   width: 100%;
   text-align: center;
   max-width: 200px;
