@@ -290,6 +290,10 @@ figure figcaption {
     /* 0 es completamente transparente, 1 es completamente opaco */
   }
 
+#myModal{
+  background-color: rgb(147, 130, 148)
+}
+
 /* Estilos para la imagen de Totoro */
 .totoro-image {
   display: inline-block;

@@ -2,8 +2,9 @@
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
 
-const statsContainer = document.querySelector(".stats-container");
-const containerCard = document.querySelector(".grid-container");
+const statsContainer = document.querySelector(".stats-container"); // para visualizar estadísticas
+const containerCard = document.querySelector(".grid-container"); // para visualizar grilla de peliculas
+
 const createMovieHTML = (movie, index) => {
   const figure = document.createElement('figure');
   const img = document.createElement('img');
@@ -11,7 +12,7 @@ const createMovieHTML = (movie, index) => {
   img.alt = movie.title;
   img.id = 'data-movie-id';
 
-  const figcaption = document.createElement('figcaption');
+  const figcaption = document.createElement('figcaption'); //representa un subtítulo o leyenda asociado al contenido del elemento padre <figure>
   figcaption.textContent = movie.title; // Agregar el título
 
   // Agregar el botón "Ver detalles"
@@ -146,14 +147,14 @@ showMoviesInCards(data.films);
 // Cuenta la cantidad de caracteres con género femenino o masculino.
 
 function computeStats(data) {
-  let num_female_characters = 0;
-  let num_male_characters = 0;
-  let num_nonhuman_species = 0;
+  let num_female_characters = 0;  //Contador para el número de personajes femeninos.
+  let num_male_characters = 0;    //Contador para el número de personajes masculinos.
+  let num_nonhuman_species = 0;   //nun_  son variables que se crean y se inicializan con un valor de 0
 
-  data.films.forEach((film) => {
+  data.films.forEach((film) => { // forEach Código que se ejecutará para cada elemento
     film.people.forEach((person) => {
       if (person.gender === "Female") {
-        num_female_characters += 1;
+        num_female_characters += 1;     //a medida que el código itera a través de los datos permitirá el cálculo de estadísticas
       } else if (person.gender === "Male") {
         num_male_characters += 1;
       }
@@ -172,6 +173,7 @@ function computeStats(data) {
   };
 }
 
+// mostrar y ocultar el display de stadisticas
 document.addEventListener("DOMContentLoaded", () => {
   const showStatsButton = document.getElementById("showStatsButton");
   
@@ -183,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 })
-
+// funcion para mostrar las estadísticas
 function showStats() {
   const stats = computeStats(data);
   const statsHTML = `
@@ -195,7 +197,7 @@ function showStats() {
   statsContainer.style.display = "block";
 }
 
-
+// funcion para ocultar las estadísticas
 function hideStats() {
   statsContainer.style.display = "none";
 }
@@ -227,7 +229,7 @@ showChartButton.addEventListener("click", () => {
 
     // Reemplaza estos valores con los datos adecuados de tu estadística
     const labels = ['Female Characters', 'Male Characters', 'Non-Human Species'];
-    const dataPoints = [81, 87, 10]; // Valores de ejemplo, reemplázalos con tus valores
+    const dataPoints = [81, 87, 171]; // Valores de ejemplo, reemplázalos con tus valores
 
     // Crear el gráfico
     const ctx = document.getElementById('characterStatsChart').getContext('2d');
@@ -276,12 +278,4 @@ showChartButton.addEventListener("click", () => {
   }
 });
 
-// Boton close
-const closeButton = document.getElementById("closeButton");
 
-closeButton.addEventListener("click", () => {
-  const statsContainer = document.querySelector(".stats-container");
-  const chartContainer = document.querySelector(".chart-container");
-  statsContainer.style.display = "none";
-  chartContainer.style.display = "none";
-});
