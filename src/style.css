@@ -37,6 +37,7 @@ nav {
   align-items: center;
   flex-wrap: nowrap; /*Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea*/
   justify-content: space-around;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .search-container{
@@ -53,6 +54,7 @@ input.src{
   width: 50px;
   transition: all .3s;
   height: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 input.src:hover{
@@ -77,9 +79,10 @@ nav .filters {
   flex-wrap: nowrap;
   flex-grow: 1; /* Hace que los filtros ocupen todo el espacio disponible */
   justify-content: space-around;
-  padding: 15px 40px;
+  padding: 15px 0px;
   max-width: fit-content;
   align-items: baseline;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 nav #sort{
@@ -92,6 +95,7 @@ nav #sort{
   height: 35px;
   margin-left: 10px;
   flex-grow: 1;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #noResultsMessage {
@@ -101,6 +105,7 @@ nav #sort{
   background-color: #e8f4f5;
   text-align: center; /* Alinear el texto al centro */
   font-size: 16px; /* Tamaño de fuente */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* Estilos para las estadísticas */
@@ -146,8 +151,8 @@ nav #sort{
 /* Estilos para el contenedor de la cuadrícula */
 .grid-container {
   max-width: 960px;
-  margin: 20px auto;
-  padding: 0 20px; /* Añadir un espaciado adicional en los lados para centrar */
+  margin: auto;
+  padding: 0px 20px; /* Añadir un espaciado adicional en los lados para centrar */
 }
 
 .movie-grid {
@@ -156,21 +161,21 @@ nav #sort{
   gap: 10px; /* Espacio entre las filas */
   grid-gap: 20px; /* Espacio entre las columnas */
   max-width: 960px;
-  margin: 20px auto;
+  margin: 20px auto auto -35px;
   justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
 }
 
 /* Elimina la regla de altura para las imágenes */
 .movie-grid img {
   width: 100%;
-  border-radius: 5px; /* Redondea los bordes de las imágenes */
+  border-radius: 15px; /* Redondea los bordes de las imágenes */
   object-fit: cover;
 }
 
 figure {
   border: 2px solid #d5c7fe;
-  border-radius: 10px 10px 10px 10px; /* generador de radio en bordes https://html-css-js.com/css/generator/border-radius/ */
-  padding: 5px;
+  border-radius: 15px; /* generador de radio en bordes https://html-css-js.com/css/generator/border-radius/ */
+  padding: 10px;
   width: 100%;
   text-align: center;
   max-width: 200px;
@@ -179,16 +184,17 @@ figure {
 img {
   width: 100%;
   height: 260px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 15px;
   object-fit: cover;
 }
 
 figcaption {
-  background-color: #424242;
-  border-radius: 5px 5px 5px 5px;
-  color: #b18ca5;
-  font-size: smaller;
-  padding: 3px;
+  /* background-color: #424242; */
+  border-radius: 15px;
+  color: #444;
+  padding: 4px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
 }
 
 /* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
@@ -208,24 +214,35 @@ figcaption {
 #showStatsButton,
 #showChartButton {
   margin: 0 5px; /* Ajusta el margen entre los botones según tus preferencias */
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #444;
+  border: 1px solid #f0f0f0;
+  width: 150px;
+  height: 35px;
+  margin-left: 10px;
+  flex-grow: 1;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* Estilo para el botón "Ver detalles" */
 .view-details-button {
   background-color: #c4aec4;
   color: #fff;
-  border: none;
-  padding: 6px 10px;
+  border: none; 
+  padding: 6px 0px;
   cursor: pointer;
-  border-radius: 5px 5px 5px 5px; /* Cambia los bordes para que solo la parte inferior tenga radio */
+  border-radius: 15px; /* Cambia los bordes para que solo la parte inferior tenga radio */
   display: block;
   width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
   margin-top: 5px; /* Espacio entre el botón y el título */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 /* Estilo para el título de la película */
 figure figcaption {
-  margin-bottom: 10px; /* Espacio entre el título y la imagen */
+  margin-bottom: 0px; /* Espacio entre el título y la imagen */
 }
 
 .box {
@@ -241,7 +258,9 @@ figure figcaption {
 
 #popupDialog {
   width: 500px;
-  height: 700px;
+  height: 650px;
+  border: 2px solid #c4aec4;
+  border-radius: 15px;
 }
 
 #popupDialog h2 {
@@ -257,30 +276,29 @@ figure figcaption {
   text-align: justify;
 }
 
-#popup-image img {
-  max-width: 20%;
-  height: auto;
+#popupDialog img {
+  max-width: 50%;
+  height: 350px;
 }
   
 .closeButton {
-    border: 1px solid #e5e2d9;
-    margin-top: 20px;
-    color: rgb(255, 255, 255);
+    margin: 20px 200px;
     font-size: 16px;
     text-align: center;
     background-color: #2aa3a3;
     border-radius: 5px;
-    padding: 5px 5px;
+    padding: 5px;
     display: inline-block;
     cursor: pointer;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
-    height: 35px;
+    height: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: #fff;
   }
 
 .closeButton:hover {
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
     opacity: 0.8;
     background-color: #392549;  
+    border: #fff;
   }
 
 .modal-open {
@@ -305,4 +323,5 @@ figure figcaption {
   justify-content: center;
   background-color: #e8f4f5;
   padding: 30px 30px; /* Ajusta el padding según tus preferencias */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
