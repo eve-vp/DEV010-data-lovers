@@ -1,9 +1,10 @@
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
+import Chart from 'chart.js';
 
 const statsContainer = document.querySelector(".stats-container");
 const containerCard = document.querySelector(".grid-container");
-const createMovieHTML = (movie, index) => {
+const createMovieHTML = (movie) => {
   const figure = document.createElement('figure');
   const img = document.createElement('img');
   img.src = movie.poster;
@@ -32,13 +33,6 @@ const createMovieHTML = (movie, index) => {
 
   return figure.outerHTML;
 };
-
-// Función para mostrar las películas que coinciden con el término de búsqueda
-function showMatchingFilms(movies, searchTerm, container) {
-  const matchingFilms = filterMoviesByTitle(movies, searchTerm);
-  // renderMovies(matchingFilms, container);
-  showMoviesInCards(matchingFilms); // Generar elementos con controladores de eventos
-}
 
 const popUp = document.createElement('dialog');
 document.body.appendChild(popUp);
@@ -101,12 +95,14 @@ sortSelect.addEventListener('change', () => {
 
 // Función para mostrar el popup de la película
 const showMoviePopup = (movie) => {
+  const characters = movie.people.map(person => person.name).join(', ');
   const popContent = `
       <h2>${movie.title}</h2>
       <p>Release date: ${movie.release_date}</p>
       <p>Director: ${movie.director}</p>
       <p>Producer: ${movie.producer}</p>
       <p>Description: ${movie.description}</p>
+      <p>Characters: ${characters}</p>
       <img src="${movie.poster}" alt="${movie.title} Poster" />
     `;
 
