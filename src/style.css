@@ -1,4 +1,3 @@
-/* Agrega estilos para hacer la página responsiva */
 body {
   margin: 0;
   padding: 0;
@@ -189,7 +188,6 @@ img {
 }
 
 figcaption {
-  /* background-color: #424242; */
   border-radius: 15px;
   color: #444;
   padding: 4px;
@@ -240,7 +238,7 @@ figcaption {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-/* Estilo para el título de la película */
+/* Estilo para el popup de la película */
 figure figcaption {
   margin-bottom: 0px; /* Espacio entre el título y la imagen */
 }
@@ -258,7 +256,7 @@ figure figcaption {
 
 #popupDialog {
   width: 500px;
-  height: 650px;
+  height: 700px;
   border: 2px solid #c4aec4;
   border-radius: 15px;
 }
@@ -315,8 +313,8 @@ figure figcaption {
   height: 20px;
   margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
 }
-/* Estilos para el texto del footer */
 
+/* Estilos para el texto del footer */
 .footer p {
   display: flex;
   align-items: center;
