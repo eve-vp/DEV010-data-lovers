@@ -1,0 +1,325 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif,
+    sans-serif;
+}
+
+/* Estilos para el encabezado */
+header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header img {
+  max-height: 40%;
+  width: auto; /* Esto hará que el ancho se ajuste proporcionalmente a la altura */
+  object-fit: contain;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.logo img {
+  max-height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Estilos para la barra de navegación */
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /*Permite que los elementos se envuelvan cuando no haya suficiente espacio en una línea*/
+  justify-content: space-around;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.search-container{
+  position: relative;
+}
+
+input.src{
+  padding: 5px 35px;
+  outline: none;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #444;
+  border: 1px solid #f0f0f0;
+  width: 50px;
+  transition: all .3s;
+  height: 25px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input.src:hover{
+  width: 130px;
+  max-width: 150px;
+  background-color: #f0f0f0;
+  border-color:#f0f0f0;
+  box-shadow: 0 0 5px #f0f0f0;
+}
+
+.icon{
+  font-size: 16px;
+  position: absolute;
+  top: 28%;
+  left: 10px;
+  color:#cccbcb;
+}
+
+/* Estilos para los filtros */
+nav .filters {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1; /* Hace que los filtros ocupen todo el espacio disponible */
+  justify-content: space-around;
+  padding: 15px 0px;
+  max-width: fit-content;
+  align-items: baseline;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav #sort{
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #444;
+  border: 1px solid #f0f0f0;
+  width: 150px;
+  height: 35px;
+  margin-left: 10px;
+  flex-grow: 1;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#noResultsMessage {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Estilos para las estadísticas */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinear al centro horizontal */
+  text-align: center; /* Alinear el contenido del contenedor al centro horizontal */
+}
+
+.stats-container {
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e8f4f5;
+  text-align: center; /* Alinear el texto al centro */
+  font-size: 16px; /* Tamaño de fuente */
+}
+
+.stats-container p {
+  margin: 2px 0; /* Espaciado entre los párrafos */
+  }
+
+.controls {
+  text-align: center;
+}
+
+/* Estilos para Chart.js */
+#characterStatsChart {
+  max-width: 300px; /* Ajusta el ancho máximo del gráfico */
+  margin: 20px auto;
+}
+.chart-container {
+  display: none;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+  
+/* Estilos para el contenedor de la cuadrícula */
+.grid-container {
+  max-width: 960px;
+  margin: auto;
+  padding: 0px 20px; /* Añadir un espaciado adicional en los lados para centrar */
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px; /* Espacio entre las filas */
+  grid-gap: 20px; /* Espacio entre las columnas */
+  max-width: 960px;
+  margin: 20px auto auto -35px;
+  justify-items: center; /*Corrige espacio que teníamos a la izquierda*/
+}
+
+/* Elimina la regla de altura para las imágenes */
+.movie-grid img {
+  width: 100%;
+  border-radius: 15px; /* Redondea los bordes de las imágenes */
+  object-fit: cover;
+}
+
+figure {
+  border: 2px solid #d5c7fe;
+  border-radius: 15px; /* generador de radio en bordes https://html-css-js.com/css/generator/border-radius/ */
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  max-width: 200px;
+}
+
+img {
+  width: 100%;
+  height: 260px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+figcaption {
+  border-radius: 15px;
+  color: #444;
+  padding: 4px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 15px;
+}
+
+/* Agrega un aumento en el borde cuando el cursor pasa sobre la película */
+.box:hover {
+  transform: scale(1.05); /* Aumenta el tamaño en un 5% */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+/* Estilos para el contenedor de botones */
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Estilos para los botones */
+#showStatsButton,
+#showChartButton {
+  margin: 0 5px; /* Ajusta el margen entre los botones según tus preferencias */
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  color: #444;
+  border: 1px solid #f0f0f0;
+  width: 150px;
+  height: 35px;
+  margin-left: 10px;
+  flex-grow: 1;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Estilo para el botón "Ver detalles" */
+.view-details-button {
+  background-color: #c4aec4;
+  color: #fff;
+  border: none; 
+  padding: 6px 0px;
+  cursor: pointer;
+  border-radius: 15px; /* Cambia los bordes para que solo la parte inferior tenga radio */
+  display: block;
+  width: 100%; /*Asegura que el botón ocupe todo el ancho disponible */
+  margin-top: 5px; /* Espacio entre el botón y el título */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Estilo para el popup de la película */
+figure figcaption {
+  margin-bottom: 0px; /* Espacio entre el título y la imagen */
+}
+
+.box {
+  color: rgb(168, 119, 168);
+}
+
+#bodypopupDialog {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Evita que la imagen se desplace al desplazarse */
+}
+
+#popupDialog {
+  width: 500px;
+  height: 700px;
+  border: 2px solid #c4aec4;
+  border-radius: 15px;
+}
+
+#popupDialog h2 {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #632b91;
+  text-align: center;
+}
+
+#popupDialog p {
+  font-size: 15px;
+  text-align: justify;
+}
+
+#popupDialog img {
+  max-width: 50%;
+  height: 350px;
+}
+  
+.closeButton {
+    margin: 20px 200px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #2aa3a3;
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+    height: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: #fff;
+  }
+
+.closeButton:hover {
+    opacity: 0.8;
+    background-color: #392549;  
+    border: #fff;
+  }
+
+.modal-open {
+    opacity: 0.5;
+    /* Puedes ajustar el último valor (0.5) para cambiar la opacidad */
+    /* 0 es completamente transparente, 1 es completamente opaco */
+  }
+
+/* Estilos para la imagen de Totoro */
+.totoro-image {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 20px;
+  margin-right: 5px; /* Ajusta los márgenes según tus preferencias */
+}
+
+/* Estilos para el texto del footer */
+.footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8f4f5;
+  padding: 30px 30px; /* Ajusta el padding según tus preferencias */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
