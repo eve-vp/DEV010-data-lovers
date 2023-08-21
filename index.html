@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caesar Cipher</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Caesar Cipher Encode/Decode</h1>
+    <input type="text" id="inputText" placeholder="Enter your text">
+    <div class="options">
+      <label for="shiftAmount">Shift amount:</label>
+      <select id="shiftAmount">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="2">3</option>
+        <option value="2">4</option>
+        <option value="2">5</option>
+        <option value="2">6</option>
+        <option value="2">7</option>
+        <option value="2">8</option>
+        <option value="2">9</option>
+        <option value="2">10</option>
+        <option value="2">11</option>
+        <option value="2">12</option>
+        <option value="2">13</option>
+        <option value="2">14</option>
+        <option value="2">15</option>
+        <option value="2">16</option>
+        <option value="2">17</option>
+        <option value="2">18</option>
+        <option value="2">19</option>
+        <option value="2">20</option>
+        <option value="2">21</option>
+        <option value="2">22</option>
+        <option value="2">23</option>
+        <option value="2">24</option>
+        <option value="2">25</option>
+        <!-- Add more options up to 25 -->
+      </select>
+    </div>
+    <button id="encodeBtn" onclick="encode()">Encode</button>
+    <button id="decodeBtn" onclick="decode()">Decode</button>
+    <button id="clearBtn" onclick="clearText()">Clear</button>
+    <div class="output">
+      <label for="encodeText">Encode Text:</label>
+      <textarea id="encodeText" readonly></textarea>
+      <label for="decodeText">Decode Text:</label>
+      <textarea id="decodeText" readonly></textarea>
+    </div>
+  </div>
+  <script src="cipher.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
