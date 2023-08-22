@@ -1,18 +1,23 @@
-// Importa los datos
+// Importación de módulos y configuración
 import data from './data/ghibli/ghibli.js';
 import { filterMoviesByTitle , sortByReleaseDate, sortByTitle } from './data.js';
+// import Chart from 'chart.js';
 
-const statsContainer = document.querySelector(".stats-container"); // para visualizar estadísticas
-const containerCard = document.querySelector(".grid-container"); // para visualizar grilla de peliculas
+// Obtención de referencias a elementos en el DOM
+const statsContainer = document.querySelector(".stats-container");
+const containerCard = document.querySelector(".grid-container");
 
-const createMovieHTML = (movie, index) => {
+// Función para crear el fragmento HTML de una película
+const createMovieHTML = (movie) => {
+  // Crear elementos de imagen, figura y botón
   const figure = document.createElement('figure');
   const img = document.createElement('img');
   img.src = movie.poster;
   img.alt = movie.title;
   img.id = 'data-movie-id';
 
-  const figcaption = document.createElement('figcaption'); //representa un subtítulo o leyenda asociado al contenido del elemento padre <figure>
+  // Crear el título de la película
+  const figcaption = document.createElement('figcaption');
   figcaption.textContent = movie.title; // Agregar el título
 
   // Agregar el botón "Ver detalles"
@@ -28,29 +33,25 @@ const createMovieHTML = (movie, index) => {
   // Agregar título y botón al figcaption
   figcaption.appendChild(viewDetailsButton);
 
-  // Agregar imagen y figcaption al figure
+  // Agregar imagen y figcaption a la figura
   figure.appendChild(img);
   figure.appendChild(figcaption);
 
   return figure.outerHTML;
 };
 
-// Función para mostrar las películas que coinciden con el término de búsqueda
-function showMatchingFilms(movies, searchTerm, container) {
-  const matchingFilms = filterMoviesByTitle(movies, searchTerm);
-  // renderMovies(matchingFilms, container);
-  showMoviesInCards(matchingFilms); // Generar elementos con controladores de eventos
-}
-
+// Crear popup para mostrar detalles de la película
 const popUp = document.createElement('dialog');
 document.body.appendChild(popUp);
 popUp.setAttribute('id', 'popupDialog');
 containerCard.appendChild(popUp);
 
+// Renderizar las películas en el contenedor
 function renderMovies(movies, container) {
   const moviesHTML = movies.map(createMovieHTML).join('');
   container.innerHTML = moviesHTML;
 
+  // Establecer altura fija para las imágenes
   const movieImages = container.querySelectorAll('img');
   movieImages.forEach(image => {
     image.style.height = '260px';
@@ -62,17 +63,17 @@ const searchInput = document.querySelector('#searchInput');
 const container = document.querySelector('.movie-grid');
 const noResultsMessage = document.querySelector('#noResultsMessage');
 
-// Llama a la función inicialmente para mostrar todas las películas
+// Mostrar todas las películas inicialmente
 renderMovies(data.films, container);
 
 // Agrega un evento keyup al campo de búsqueda
 searchInput.addEventListener('keyup', () => {
   const searchTerm = searchInput.value.trim();
   const matchingFilms = filterMoviesByTitle(data.films, searchTerm);
+  // Mostrar u ocultar mensajes y películas según los resultados
   if (matchingFilms.length === 0) {
     noResultsMessage.style.display = 'block';
     container.style.display = 'none';
-    // container.innerHTML = ''; 
   } else {
     noResultsMessage.style.display = 'none';
     container.style.display = 'grid';
@@ -83,37 +84,40 @@ searchInput.addEventListener('keyup', () => {
 //Función para vincular sort con el DOM
 const sortSelect = document.querySelector('#sort');
 
-// Agregar un evento change al select
+// Agregar un evento change al select de ordenamiento por fecha
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value; // 'asc' o 'desc'
   const sortedFilms = sortByReleaseDate(data.films, sortOrder);
-  
-  // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
 });
 
-// Agregar un evento change al select
+// Agregar un evento change al select de ordenamiento por título
 sortSelect.addEventListener('change', () => {
   const sortOrder = sortSelect.value; // 'AZ - ZA'
   const sortedFilms = sortByTitle(data.films, sortOrder);
-  
-  // Llamar a la función para mostrar las películas ordenadas en el DOM
   renderMovies(sortedFilms, container);
 });
 
 // Función para mostrar el popup de la película
 const showMoviePopup = (movie) => {
+  // Obtener nombres de los personajes
+  const characters = movie.people.map(person => person.name).join(', ');
+  
+  // Crear contenido del popup con detalles de la película
   const popContent = `
       <h2>${movie.title}</h2>
       <p>Release date: ${movie.release_date}</p>
       <p>Director: ${movie.director}</p>
       <p>Producer: ${movie.producer}</p>
       <p>Description: ${movie.description}</p>
+      <p>Characters: ${characters}</p>
       <img src="${movie.poster}" alt="${movie.title} Poster" />
     `;
 
+  // Agregar contenido al popup
   popUp.innerHTML = popContent;
   
+  // Crear botón de cierre y agregar evento click
   const closeButton = document.createElement("button");
   closeButton.classList.add("closeButton");
   closeButton.textContent = "Close";
@@ -123,9 +127,11 @@ const showMoviePopup = (movie) => {
     popUp.close();
   });
   
+  // Mostrar el popup
   popUp.showModal();
 };
 
+// Función para mostrar las películas como tarjetas
 const showMoviesInCards = (movies) => {
   container.innerHTML = '';
   movies.forEach((movie, index) => {
@@ -141,20 +147,22 @@ const showMoviesInCards = (movies) => {
   });
 };
 
+// Mostrar películas como tarjetas
 showMoviesInCards(data.films);
 
-//ESTADÍSTICAS
-// Cuenta la cantidad de caracteres con género femenino o masculino.
+// ESTADÍSTICAS //
 
+// Cálculo y visualización de estadísticas
 function computeStats(data) {
-  let num_female_characters = 0;  //Contador para el número de personajes femeninos.
-  let num_male_characters = 0;    //Contador para el número de personajes masculinos.
-  let num_nonhuman_species = 0;   //nun_  son variables que se crean y se inicializan con un valor de 0
+  let num_female_characters = 0; //Contador para el número de personajes femeninos.
+  let num_male_characters = 0; //Contador para el número de personajes masculinos.
+  let num_nonhuman_species = 0; //nun_  son variables que se crean y se inicializan con un valor de 0
 
-  data.films.forEach((film) => { // forEach Código que se ejecutará para cada elemento
+
+  data.films.forEach((film) => { // forEach código que se ejecutará para cada elemento
     film.people.forEach((person) => {
       if (person.gender === "Female") {
-        num_female_characters += 1;     //a medida que el código itera a través de los datos permitirá el cálculo de estadísticas
+        num_female_characters += 1; //a medida que el código itera a través de los datos permitirá el cálculo de estadísticas
       } else if (person.gender === "Male") {
         num_male_characters += 1;
       }
@@ -162,7 +170,6 @@ function computeStats(data) {
       if (person.species !== "Human") {
         num_nonhuman_species += 1;
       }
-
     });
   });
 
@@ -173,7 +180,7 @@ function computeStats(data) {
   };
 }
 
-// mostrar y ocultar el display de stadisticas
+// Mostrar y ocultar el display de estadísticas
 document.addEventListener("DOMContentLoaded", () => {
   const showStatsButton = document.getElementById("showStatsButton");
   
@@ -185,7 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 })
-// funcion para mostrar las estadísticas
+
+// Mostrar las estadísticas
 function showStats() {
   const stats = computeStats(data);
   const statsHTML = `
@@ -197,7 +205,7 @@ function showStats() {
   statsContainer.style.display = "block";
 }
 
-// funcion para ocultar las estadísticas
+// Ocultar las estadísticas
 function hideStats() {
   statsContainer.style.display = "none";
 }
@@ -278,4 +286,12 @@ showChartButton.addEventListener("click", () => {
   }
 });
 
+// Boton close
+const closeButton = document.getElementById("closeButton");
 
+closeButton.addEventListener("click", () => {
+  const statsContainer = document.querySelector(".stats-container");
+  const chartContainer = document.querySelector(".chart-container");
+  statsContainer.style.display = "none";
+  chartContainer.style.display = "none";
+});

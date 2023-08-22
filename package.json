@@ -32,6 +32,7 @@
     "commit": "4ea26447e1a259476f237a7a6212e3a02409910b"
   },
   "dependencies": {
+    "chart": "^0.1.2",
     "chart.js": "^4.3.3"
   }
 }
