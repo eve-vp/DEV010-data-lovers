@@ -21,10 +21,12 @@ describe('filterMoviesByTitle', () => {
     const searchTerm = 'Away';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);
     // Esperamos que solo 'Spirited Away' esté en la lista filtrada
+    // toEqual es un método de aserción utilizado en pruebas unitarias para verificar que dos valores sean iguales.
     expect(filteredMovies).toEqual([{ title: 'Spirited Away' }]); 
   });
 
   // mayúsculas y minúsculas en el término de búsqueda
+  // título debe ser insensible a mayúsculas y minúsculas
   it('is case-insensitive', () => {
     const searchTerm = 'awAy';
     const filteredMovies = filterMoviesByTitle(movies, searchTerm);

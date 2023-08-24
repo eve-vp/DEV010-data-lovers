@@ -2,6 +2,9 @@
 <html lang="en" style="--header-height: 0px">
 
   <head>
+    <!-- Contiene metadatos sobre la página web. 
+    Estos metadatos incluyen el conjunto de caracteres utilizado, la configuración de la vista previa para dispositivos móviles, el color del tema y el título de la página. 
+    También hay enlaces a un ícono de acceso directo, un archivo CSS externo y un script JavaScript externo. -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="" />
@@ -19,10 +22,18 @@
     </header>
 
     <nav>
+<<<<<<< HEAD
+      <!-- Parte de la barra de navegación del sitio web. 
+      Está diseñado para permitir al usuario buscar y ordenar contenido en el sitio web. 
+      El elemento input permite al usuario ingresar un término de búsqueda, mientras que el elemento select le permite elegir entre diferentes opciones para ordenar los resultados. -->
+=======
+      
+>>>>>>> ab891e3dc923afced9efbaaa9b7ddcb93fccd3a8
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search..." class="src" autocomplete="off">
         <i class="fa-solid fa-magnifying-glass icon"></i>
       </div>
+      
       <div class="filters">
         <label for="sort">Sort by:</label>
         <select id="sort">
@@ -32,11 +43,13 @@
           <option value="asc">Date, new to old</option>
         </select>
       </div>
+      
     </nav>
 
     <p id="noResultsMessage" style="display: none">No results found...</p>
 
     <main>
+      <!-- Contiene elementos para mostrar información y botones para interactuar con la página -->
       <div class="controls">
         <div class="controls">
           <button id="showStatsButton">Show Statistics</button>
@@ -68,6 +81,9 @@
     <div id="root"></div>
     <script src="main.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Crea un elemento div con el id "root" y luego carga dos scripts. 
+    "main.js" se cargará como un módulo, lo que significa que los archivos de este módulo estarán disponibles para usarse en otros archivos.
+    "Chart.js" una biblioteca JavaScript para crear gráficos interactivos y visualizaciones de datos. -->
 
   </body>
 </html>
